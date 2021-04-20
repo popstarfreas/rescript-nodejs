@@ -1,24 +1,25 @@
 {
-  "name": "reason-nodejs",
+  "name": "rescript-nodejs",
   "version": "13.0.0-beta.2",
   "scripts": {
-    "build": "bsb -make-world",
-    "clean-build": "bsb -clean-world && bsb -make-world",
-    "start": "bsb -make-world -w",
-    "clean-start": "bsb -clean-world && bsb -make-world -w",
+    "build": "rescript build",
+    "build:clean": "rescript clean && rescript build",
+    "build:watch": "rescript build -w",
+    "build:watch:clean": "rescript clean && rescript build -w",
     "test": "jest",
-    "clean-test": "bsb -clean-world && bsb -make-world && jest",
-    "clean": "bsb -clean-world"
+    "test:clean": "rescript clean && rescript build && jest",
+    "clean": "rescript clean"
   },
   "keywords": [
-    "BuckleScript"
+    "Rescript"
   ],
-  "author": "Sikan He & Austin Davis",
+  "author": "Sikan He & Austin Davis & popstarfreas",
   "homepage": "https://github.com/sikanhe/reason-node",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "rescript": "^9.1.1"
+  },
   "devDependencies": {
-    "@glennsl/bs-jest": "^0.4.10",
-    "bs-platform": "^8.3.0"
+    "@glennsl/bs-jest": "^0.4.10"
   }
 }
