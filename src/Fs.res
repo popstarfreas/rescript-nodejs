@@ -391,6 +391,9 @@ external openWithMode: (string, Flag.t, ~mode: int) => Js.Promise.t<FileHandle.t
 @module("fs") @scope("promises")
 external readFile: (string, readFileOptions) => Js.Promise.t<Buffer.t> = "readFile"
 
+@module("fs") @scope("promises")
+external writeFile: (string, writeFileOptions) => Js.Promise.t<Buffer.t> = "writeFile"
+
 module WriteStream = {
   type kind<'w> = [Stream.writable<'w> | #FileSystem]
   type subtype<'w, 'ty> = Stream.subtype<[> kind<'w>] as 'ty>
