@@ -247,22 +247,22 @@ external lastIndexOfIntFrom: (t, int, ~offset: int) => int = "lastIndexOf"
 @send external readFloatBE: (t, ~offset: int) => float = "readFloatBE"
 @send external readFloatLE: (t, ~offset: int) => float = "readFloatLE"
 
-@send external readInt8: (t, ~offset: int) => float = "readInt8"
+@send external readInt8: (t, ~offset: int) => int = "readInt8"
 
-@send external readInt16BE: (t, ~offset: int) => float = "readInt16BE"
-@send external readInt16LE: (t, ~offset: int) => float = "readInt16LE"
+@send external readInt16BE: (t, ~offset: int) => int = "readInt16BE"
+@send external readInt16LE: (t, ~offset: int) => int = "readInt16LE"
 
-@send external readInt32BE: (t, ~offset: int) => float = "readInt32BE"
-@send external readInt32LE: (t, ~offset: int) => float = "readInt32LE"
+@send external readInt32BE: (t, ~offset: int) => int = "readInt32BE"
+@send external readInt32LE: (t, ~offset: int) => int = "readInt32LE"
 
 @send external readIntBE: (t, ~offset: int) => float = "readIntBE"
 @send
 external readIntLE: (t, ~offset: int, ~length: int) => float = "readIntLE"
 
-@send external readUint8: (t, ~offset: int) => float = "readUint8"
+@send external readUint8: (t, ~offset: int) => int = "readUint8"
 
-@send external readUint16BE: (t, ~offset: int) => float = "readUint16BE"
-@send external readUint16LE: (t, ~offset: int) => float = "readUint16LE"
+@send external readUint16BE: (t, ~offset: int) => int = "readUint16BE"
+@send external readUint16LE: (t, ~offset: int) => int = "readUint16LE"
 
 @send external readUint32BE: (t, ~offset: int) => float = "readUint32BE"
 @send external readUint32LE: (t, ~offset: int) => float = "readUint32LE"
