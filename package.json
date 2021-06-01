@@ -1,5 +1,5 @@
 {
-  "name": "rescript-nodejs",
+  "name": "@popstarfreas/rescript-nodejs",
   "version": "14.0.0",
   "scripts": {
     "build": "rescript build",

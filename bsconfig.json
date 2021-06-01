@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/BuckleScript/bucklescript/master/docs/docson/build-schema.json",
-  "name": "rescript-nodejs",
+  "name": "@popstarfreas/rescript-nodejs",
   "sources": [
     {
       "dir": "src",
