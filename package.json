@@ -1,6 +1,6 @@
 {
   "name": "@popstarfreas/rescript-nodejs",
-  "version": "14.2.0",
+  "version": "14.3.0",
   "scripts": {
     "build": "rescript build",
     "build:clean": "rescript clean && rescript build",
