@@ -117,6 +117,20 @@ external execFileWith: (
 
 type forkOptions
 
+type stdioPipeSetting = [
+  | #pipe
+  | #overlapped
+  | #ignore
+  | #inherit
+]
+
+type stdio = (stdioPipeSetting, stdioPipeSetting, stdioPipeSetting)
+
+let stdioPipe: stdio = (#pipe, #pipe, #pipe)
+let stdioOverlapped: stdio = (#overlapped, #overlapped, #overlapped)
+let stdioIgnore: stdio = (#ignore, #ignore, #ignore)
+let stdioInherit: stdio = (#inherit, #inherit, #inherit)
+
 @obj
 external forkOptions: (
   ~cwd: string=?,
@@ -125,7 +139,7 @@ external forkOptions: (
   ~execPath: string=?,
   ~execArgv: array<string>=?,
   ~silent: bool=?,
-  ~stdio: string=?,
+  ~stdio: stdio=?,
   ~uid: int=?,
   ~gid: int=?,
   ~windowsVerbatimArguments: bool=?,
