@@ -8,7 +8,7 @@ module Events = {
   @send
   external onError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "on"
   @send
-  external onExit: (t, @as("exit") _, @uncurry (int => unit)) => t = "on"
+  external onExit: (t, @as("exit") _, @uncurry ((Js.Null.t<int>, Js.Null.t<string>) => unit)) => t = "on"
   @send
   external onClose: (t, @as("close") _, @uncurry (int => unit)) => t = "on"
 
@@ -30,7 +30,7 @@ module Events = {
   @send
   external onErrorOnce: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "once"
   @send
-  external onExitOnce: (t, @as("exit") _, @uncurry (int => unit)) => t = "once"
+  external onExitOnce: (t, @as("exit") _, @uncurry ((Js.Null.t<int>, Js.Null.t<string>) => unit)) => t = "once"
   @send
   external onCloseOnce: (t, @as("close") _, @uncurry (int => unit)) => t = "once"
 
