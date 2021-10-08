@@ -316,7 +316,7 @@ module FileHandle = {
 @module("fs") @scope("promises")
 external access: string => Js.Promise.t<unit> = "access"
 @module("fs") @scope("promises")
-external accessWithMode: (string, ~mode: int) => Js.Promise.t<unit> = "access"
+external accessWithMode: (string, ~mode: Constants.t) => Js.Promise.t<unit> = "access"
 
 @module("fs") @scope("promises")
 external appendFile: (string, string, appendFileOptions) => Js.Promise.t<unit> = "appendFile"
