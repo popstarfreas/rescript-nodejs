@@ -393,7 +393,10 @@ type readDirOptions
 @obj external readDirOptions: (~withFileTypes: bool, ~encoding: string=?, unit) => readDirOptions = ""
 
 @module("fs") @scope("promises")
-external readdirWith: (string, readDirOptions) => Js.Promise.t<array<string>> = "readdir"
+external _readdirWithFileTypes: (string, readDirOptions) => Js.Promise.t<array<Dirent.t>> = "readdir"
+let readdirWithFileTypes = (dir: string) => {
+  _readdirWithFileTypes(dir, readDirOptions(~withFileTypes=true, ()))
+}
 
 @module("fs") @scope("promises")
 external readFile: (string, ~options: readFileOptions=?, unit) => Js.Promise.t<Buffer.t> = "readFile"
