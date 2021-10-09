@@ -387,6 +387,9 @@ external open_: (string, Flag.t) => Js.Promise.t<FileHandle.t> = "open"
 external openWithMode: (string, Flag.t, ~mode: int) => Js.Promise.t<FileHandle.t> = "open"
 
 @module("fs") @scope("promises")
+external readdir: string => Js.Promise.t<array<string>> = "readdir"
+
+@module("fs") @scope("promises")
 external readFile: (string, ~options: readFileOptions=?, unit) => Js.Promise.t<Buffer.t> = "readFile"
 
 @module("fs") @scope("promises")
