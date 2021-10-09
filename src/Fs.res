@@ -393,6 +393,9 @@ external readdir: string => Js.Promise.t<array<string>> = "readdir"
 external readFile: (string, ~options: readFileOptions=?, unit) => Js.Promise.t<Buffer.t> = "readFile"
 
 @module("fs") @scope("promises")
+external unlink: string => Js.Promise.t<unit> = "unlink"
+
+@module("fs") @scope("promises")
 external writeFile: (string, Buffer.t, ~options: writeFileOptions=?, unit) => Js.Promise.t<unit> = "writeFile"
 
 module WriteStream = {
