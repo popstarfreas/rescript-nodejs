@@ -17,6 +17,9 @@ external inspectOptions: (
   unit,
 ) => inspectOptions = ""
 
+@module("util")
+external inspect: ('a, inspectOptions) => string = "inspect"
+
 module Types = {
   @val @module("util") @scope("types")
   external isAnyArrayBuffer: 'a => bool = "isAnyArrayBuffer"
