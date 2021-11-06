@@ -44,6 +44,10 @@ module Events = {
   @send external emitClose: (t, @as("close") _, int) => bool = "emit"
 
   @send external removeAllListeners: t => t = "removeAllListeners"
+  @send external removeExitListener: (t, @as("exit") _, @uncurry ((Js.Null.t<int>, Js.Null.t<string>) => unit)) => unit = "removeListener"
+  @send external removeErrorListener: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => unit = "removeListener"
+  @send external removeCloseListener: (t, @as("close") _, @uncurry (int => unit)) => unit = "removeListener"
+  @send external removeDisconnectListener: (t, @as("disconnect") _, @uncurry (unit => unit)) => unit = "removeListener"
 }
 include Events
 
