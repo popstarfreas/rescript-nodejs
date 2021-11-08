@@ -1,6 +1,6 @@
 {
   "name": "@popstarfreas/rescript-nodejs",
-  "version": "14.5.0",
+  "version": "15.0.0",
   "scripts": {
     "build": "rescript build",
     "build:clean": "rescript clean && rescript build",
@@ -14,7 +14,7 @@
     "Rescript"
   ],
   "author": "Sikan He & Austin Davis & popstarfreas",
-  "homepage": "https://github.com/sikanhe/reason-node",
+  "homepage": "https://github.com/popstarfreas/rescript-nodejs",
   "license": "MIT",
   "dependencies": {
     "rescript": "^9.1.1"
