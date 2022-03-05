@@ -369,7 +369,7 @@ type mkdirOptions
 external mkdirOptions: (~recursive: bool=?, ~mode: int=?, unit) => mkdirOptions = ""
 
 @module("fs") @scope("promises")
-external mkdir: (string, mkdirOptions) => Js.Promise.t<unit> = "mkdir"
+external mkdir: (string) => Js.Promise.t<unit> = "mkdir"
 
 @module("fs") @scope("promises")
 external mkdirWith: (string, mkdirOptions) => Js.Promise.t<unit> = "mkdir"
