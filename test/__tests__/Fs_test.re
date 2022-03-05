@@ -37,4 +37,16 @@ describe("Fs", () => {
          );
        })
   });
+  test("lstatSync is successful and returns that this is a file", () => {
+      let isFile = lstatSync(Global.filename) |> Stats.isFile
+      Expect.(
+          expect(isFile) |> toEqual(true)
+      )
+  });
+  test("lstatSync is successful and returns that this is not a directory", () => {
+      let isDirectory = lstatSync(Global.filename) |> Stats.isDirectory
+      Expect.(
+          expect(isDirectory) |> toEqual(false)
+      )
+  });
 });

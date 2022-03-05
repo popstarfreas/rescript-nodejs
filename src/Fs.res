@@ -361,6 +361,9 @@ external lstat: string => Js.Promise.t<Stats.t> = "lstat"
 @module("fs") @scope("promises")
 external lstatBigInt: (string, bool) => Js.Promise.t<Stats.t> = "lstat"
 
+@module("fs")
+external lstatSync: string => Stats.t = "lstatSync"
+
 type mkdirOptions
 @obj
 external mkdirOptions: (~recursive: bool=?, ~mode: int=?, unit) => mkdirOptions = ""
