@@ -6,7 +6,7 @@
     "build:clean": "rescript clean && rescript build",
     "build:watch": "rescript build -w",
     "build:watch:clean": "rescript clean && rescript build -w",
-    "test": "jest",
+    "test": "pta lib/js/test/**/*.js",
     "test:clean": "rescript clean && rescript build && jest",
     "clean": "rescript clean"
   },
@@ -17,9 +17,13 @@
   "homepage": "https://github.com/popstarfreas/rescript-nodejs",
   "license": "MIT",
   "dependencies": {
-    "rescript": "^9.1.1"
+    "rescript": "10"
   },
   "devDependencies": {
-    "@glennsl/bs-jest": "^0.7.0"
+    "@dusty-phillips/rescript-zora": "^3.0.1",
+    "@glennsl/bs-jest": "^0.7.0",
+    "@ryyppy/rescript-promise": "^2.1.0",
+    "pta": "^1.1.2",
+    "zora": "^5.0.4"
   }
 }

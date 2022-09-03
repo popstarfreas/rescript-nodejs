@@ -24,12 +24,12 @@
     }
   ],
   "suffix": ".bs.js",
-  "namespace": "node-js",
+  "namespace": "NodeJs",
   "bs-dependencies": [],
   "bs-dev-dependencies": [
-    "@glennsl/bs-jest"
+    "@dusty-phillips/rescript-zora",
+    "@ryyppy/rescript-promise"
   ],
   "ppx-flags": [],
-  "refmt": 3,
   "bsc-flags": []
 }
