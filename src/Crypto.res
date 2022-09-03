@@ -60,7 +60,7 @@ module Hash = {
     @send external copy: t => t = "copy"
     @send external digest: t => Buffer.t = "digest"
     @send external digestWithEncoding: (t, string) => string = "digest"
-    @send external update: (t, Buffer.t) => unit = "update"
+    @send external update: (t, Buffer.t) => t = "update"
   }
   include Impl
 }
@@ -76,7 +76,7 @@ module Hmac = {
     include Stream.Transform.Impl
     @send external digest: t => Buffer.t = "digest"
     @send external digestWithEncoding: (t, string) => string = "digest"
-    @send external update: (t, Buffer.t) => unit = "update"
+    @send external update: (t, Buffer.t) => t = "update"
   }
   include Impl
 }
