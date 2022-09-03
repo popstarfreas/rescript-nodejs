@@ -1,8 +1,8 @@
 type t
 
 @val external fromInt: int => t = "BigInt"
-@val external toInt: t => int = "Number"
 @val external fromFloat: float => t = "BigInt"
+@val external toInt: t => int = "Number"
 
 %%private(let _NEGATIVE_ONE = fromInt(-1))
 

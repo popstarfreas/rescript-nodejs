@@ -19,6 +19,20 @@ external inspectOptions: (
 
 @module("util")
 external inspect: ('a, inspectOptions) => string = "inspect"
+type defaultInspectOptions = {
+  mutable showHidden: bool,
+  mutable depth: Js.Null.t<int>,
+  mutable colors: bool,
+  mutable customInspect: bool,
+  mutable showProxy: bool,
+  mutable maxArrayLength: Js.Null.t<int>,
+  mutable breakLength: int,
+  mutable compact: bool,
+  mutable sorted: bool,
+  mutable getters: bool,
+}
+@val @module("util") @scope("inspect")
+external defaultOptions: defaultInspectOptions = "defaultOptions"
 
 module Types = {
   @val @module("util") @scope("types")
