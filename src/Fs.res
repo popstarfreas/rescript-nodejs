@@ -212,6 +212,8 @@ external appendFileOptions: (
   unit,
 ) => appendFileOptions = ""
 
+@module("fs") external appendFileSync: (string, Buffer.t) => unit = "appendFileSync"
+
 type readFileOptions
 @obj external readFileOptions: (~flag: Flag.t=?, ~encoding: string=?, unit) => readFileOptions = ""
 
