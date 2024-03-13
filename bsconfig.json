@@ -26,11 +26,8 @@
   "namespace": "NodeJs",
   "bs-dependencies": [],
   "bs-dev-dependencies": [
-    "@dusty-phillips/rescript-zora",
-    "@ryyppy/rescript-promise"
+    "@dusty-phillips/rescript-zora"
   ],
-  "ppx-flags": [],
-  "bsc-flags": [],
   "warnings": {
     "number": "A-4-40-41-42-43-44+101-102-103",
     "error": "false"

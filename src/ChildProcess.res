@@ -1,38 +1,48 @@
-type t
+type t = {
+  connected: bool,
+  killed: bool,
+  pid: int,
+  exitCode: int,
+}
 
 module Events = {
   @send
   external onData: (t, @as("data") _, @uncurry (Buffer.t => unit)) => t = "on"
   @send
-  external onDisconnect: (t, @as("disconnect") _, @uncurry (unit => unit)) => t = "on"
+  external onDisconnect: (t, @as("disconnect") _, @uncurry unit => unit) => t = "on"
   @send
   external onError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "on"
   @send
-  external onExit: (t, @as("exit") _, @uncurry ((Js.Null.t<int>, Js.Null.t<string>) => unit)) => t = "on"
+  external onExit: (t, @as("exit") _, @uncurry (Js.Null.t<int>, Js.Null.t<string>) => unit) => t =
+    "on"
   @send
-  external onClose: (t, @as("close") _, @uncurry (int => unit)) => t = "on"
+  external onClose: (t, @as("close") _, @uncurry int => unit) => t = "on"
 
   @send
   external offData: (t, @as("data") _, @uncurry (Buffer.t => unit)) => t = "off"
   @send
-  external offDisconnect: (t, @as("disconnect") _, @uncurry (unit => unit)) => t = "off"
+  external offDisconnect: (t, @as("disconnect") _, @uncurry unit => unit) => t = "off"
   @send
   external offError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "off"
   @send
-  external offExit: (t, @as("exit") _, @uncurry (int => unit)) => t = "off"
+  external offExit: (t, @as("exit") _, @uncurry int => unit) => t = "off"
   @send
-  external offClose: (t, @as("close") _, @uncurry (int => unit)) => t = "off"
+  external offClose: (t, @as("close") _, @uncurry int => unit) => t = "off"
 
   @send
   external onDataOnce: (t, @as("data") _, @uncurry (Buffer.t => unit)) => t = "once"
   @send
-  external onDisconnectOnce: (t, @as("disconnect") _, @uncurry (unit => unit)) => t = "once"
+  external onDisconnectOnce: (t, @as("disconnect") _, @uncurry unit => unit) => t = "once"
   @send
   external onErrorOnce: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "once"
   @send
-  external onExitOnce: (t, @as("exit") _, @uncurry ((Js.Null.t<int>, Js.Null.t<string>) => unit)) => t = "once"
+  external onExitOnce: (
+    t,
+    @as("exit") _,
+    @uncurry (Js.Null.t<int>, Js.Null.t<string>) => unit,
+  ) => t = "once"
   @send
-  external onCloseOnce: (t, @as("close") _, @uncurry (int => unit)) => t = "once"
+  external onCloseOnce: (t, @as("close") _, @uncurry int => unit) => t = "once"
 
   @send
   external emitData: (t, @as("data") _, Buffer.t) => bool = "emit"
@@ -44,82 +54,84 @@ module Events = {
   @send external emitClose: (t, @as("close") _, int) => bool = "emit"
 
   @send external removeAllListeners: t => t = "removeAllListeners"
-  @send external removeExitListener: (t, @as("exit") _, @uncurry ((Js.Null.t<int>, Js.Null.t<string>) => unit)) => unit = "removeListener"
-  @send external removeErrorListener: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => unit = "removeListener"
-  @send external removeCloseListener: (t, @as("close") _, @uncurry (int => unit)) => unit = "removeListener"
-  @send external removeDisconnectListener: (t, @as("disconnect") _, @uncurry (unit => unit)) => unit = "removeListener"
+  @send
+  external removeExitListener: (
+    t,
+    @as("exit") _,
+    @uncurry (Js.Null.t<int>, Js.Null.t<string>) => unit,
+  ) => unit = "removeListener"
+  @send
+  external removeErrorListener: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => unit =
+    "removeListener"
+  @send
+  external removeCloseListener: (t, @as("close") _, @uncurry (int => unit)) => unit =
+    "removeListener"
+  @send
+  external removeDisconnectListener: (t, @as("disconnect") _, @uncurry (unit => unit)) => unit =
+    "removeListener"
 }
 include Events
 
 @get external connected: t => bool = "connected"
 @send external disconnect: t => bool = "disconnect"
 @send external kill: (t, string) => unit = "kill"
+@send external ref: t => unit = "ref"
+@send external unref: t => unit = "unref"
 @get external killed: t => bool = "killed"
 @get external pid: t => int = "pid"
-@get external ref: t => unit = "ref"
 @get @return(nullable)
 external stderr: t => option<Stream.Readable.t<Buffer.t>> = "stderr"
 @get @return(nullable)
 external stdin: t => option<Stream.Writable.t<Buffer.t>> = "stdin"
 @get @return(nullable)
 external stdout: t => option<Stream.Readable.t<Buffer.t>> = "stdout"
-@get external unref: t => unit = "unref"
 
-type execOptions
+type execOptions = {
+  cwd?: string,
+  env?: Js.Dict.t<string>,
+  shell?: string,
+  timeout?: int,
+  maxBuffer?: int,
+  killSignal?: string,
+  uid?: int,
+  gid?: int,
+  windowsHide?: bool,
+  unit: unit,
+}
 
-@obj
-external execOptions: (
-  ~cwd: string=?,
-  ~env: Js.Dict.t<string>=?,
-  ~shell: string=?,
-  ~timeout: int=?,
-  ~maxBuffer: int=?,
-  ~killSignal: string=?,
-  ~uid: int=?,
-  ~gid: int=?,
-  ~windowsHide: bool=?,
-  unit,
-) => execOptions = ""
-
-@module("child_process") @val
+@module("node:child_process") @val
 external exec: (string, (Js.nullable<Js.Exn.t>, Buffer.t, Buffer.t) => unit) => t = "exec"
 
-@module("child_process") @val
+@module("node:child_process") @val
 external execWith: (string, execOptions, (Js.nullable<Js.Exn.t>, Buffer.t, Buffer.t) => unit) => t =
   "exec"
 
-type execFileOptions
+type execFileOptions = {
+  cwd?: string,
+  env?: Js.Dict.t<string>,
+  timeout?: int,
+  maxBuffer?: int,
+  killSignal?: string,
+  uid?: int,
+  gid?: int,
+  windowsHide?: bool,
+  shell?: string,
+}
 
-@obj
-external execFileOption: (
-  ~cwd: string=?,
-  ~env: Js.Dict.t<string>=?,
-  ~timeout: int=?,
-  ~maxBuffer: int=?,
-  ~killSignal: string=?,
-  ~uid: int=?,
-  ~gid: int=?,
-  ~windowsHide: bool=?,
-  ~shell: string=?,
-  unit,
-) => execFileOptions = ""
-
-@module("child_process") @val
+@module("node:child_process") @val
 external execFile: (
   string,
   array<string>,
   (Js.nullable<Js.Exn.t>, Buffer.t, Buffer.t) => unit,
 ) => t = "execFile"
 
-@module("child_process") @val
+@module("node:child_process") @val
 external execFileWith: (
   string,
   array<string>,
   execFileOptions,
   (Js.nullable<Js.Exn.t>, Buffer.t, Buffer.t) => unit,
 ) => t = "execFile"
-
-type forkOptions
 
 type stdioPipeSetting = [
   | #pipe
@@ -135,48 +147,41 @@ let stdioOverlapped: stdio = (#overlapped, #overlapped, #overlapped)
 let stdioIgnore: stdio = (#ignore, #ignore, #ignore)
 let stdioInherit: stdio = (#inherit, #inherit, #inherit)
 
-@obj
-external forkOptions: (
-  ~cwd: string=?,
-  ~detached: bool=?,
-  ~env: Js.Dict.t<string>=?,
-  ~execPath: string=?,
-  ~execArgv: array<string>=?,
-  ~silent: bool=?,
-  ~stdio: stdio=?,
-  ~uid: int=?,
-  ~gid: int=?,
-  ~windowsVerbatimArguments: bool=?,
-  unit,
-) => forkOptions = ""
+type forkOptions = {
+  cwd?: string,
+  detached?: bool,
+  env?: Js.Dict.t<string>,
+  execPath?: string,
+  execArgv?: array<string>,
+  silent?: bool,
+  stdio?: stdio,
+  uid?: int,
+  gid?: int,
+  windowsVerbatimArguments?: bool,
+}
 
-@module("child_process") @val
+@module("node:child_process") @val
 external fork: (string, array<string>) => t = "fork"
 
-@module("child_process") @val
+@module("node:child_process") @val
 external forkWith: (string, array<string>, forkOptions) => t = "fork"
 
-type spawnOptions
+type spawnOptions = {
+  cwd?: string,
+  env?: Js.Dict.t<string>,
+  argv0?: string,
+  stdio?: stdio,
+  detached?: bool,
+  uid?: int,
+  gid?: int,
+  shell?: string,
+  windowsVerbatimArguments?: bool,
+  windowsHide?: bool,
+}
 
-@obj
-external spawnOptions: (
-  ~cwd: string=?,
-  ~env: Js.Dict.t<string>=?,
-  ~argv0: string=?,
-  ~stdio: stdio=?,
-  ~detached: bool=?,
-  ~uid: int=?,
-  ~gid: int=?,
-  ~shell: string=?,
-  ~windowsVerbatimArguments: bool=?,
-  ~windowsHide: bool=?,
-  unit,
-) => spawnOptions = ""
-
-@module("child_process") @val
 external spawn: (string, array<string>) => t = "spawn"
 
-@module("child_process") @val
+@module("node:child_process") @val
 external spawnWith: (string, array<string>, spawnOptions) => t = "spawn"
 
 type spawnSyncResult<'a> = {
@@ -189,74 +194,62 @@ type spawnSyncResult<'a> = {
   error: Js.nullable<Js.Exn.t>,
 }
 
-type spawnSyncOptions
+type spawnSyncOptions = {
+  cwd?: string,
+  env?: Js.Dict.t<string>,
+  input?: Buffer.t,
+  argv0?: string,
+  stdio?: stdio,
+  detached?: bool,
+  uid?: int,
+  gid?: int,
+  shell?: string,
+  windowsVerbatimArguments?: bool,
+  windowsHide?: bool,
+}
 
-@obj
-external spawnSyncOptions: (
-  ~cwd: string=?,
-  ~env: Js.Dict.t<string>=?,
-  ~input: Buffer.t=?,
-  ~argv0: string=?,
-  ~stdio: stdio=?,
-  ~detached: bool=?,
-  ~uid: int=?,
-  ~gid: int=?,
-  ~shell: string=?,
-  ~windowsVerbatimArguments: bool=?,
-  ~windowsHide: bool=?,
-  unit,
-) => spawnSyncOptions = ""
-
-@module("child_process") @val
+@module("node:child_process") @val
 external spawnSync: (string, array<string>, spawnSyncOptions) => spawnSyncResult<'a> = "spawnSync"
 
-@module("child_process") @val
+@module("node:child_process") @val
 external spawnSyncWith: (string, array<string>, spawnSyncOptions) => spawnSyncResult<'a> =
   "spawnSync"
 
-type execSyncOptions
+type execSyncOptions = {
+  cwd?: string,
+  env?: Js.Dict.t<string>,
+  input?: Buffer.t,
+  shell?: string,
+  timeout?: int,
+  maxBuffer?: int,
+  killSignal?: string,
+  uid?: int,
+  gid?: int,
+  stdio?: stdio,
+  windowsHide?: bool,
+}
 
-@obj
-external execSyncOptions: (
-  ~cwd: string=?,
-  ~env: Js.Dict.t<string>=?,
-  ~input: Buffer.t=?,
-  ~shell: string=?,
-  ~timeout: int=?,
-  ~maxBuffer: int=?,
-  ~killSignal: string=?,
-  ~uid: int=?,
-  ~gid: int=?,
-  ~stdio: stdio=?,
-  ~windowsHide: bool=?,
-  unit,
-) => execSyncOptions = ""
-
-@module("child_process") @val
+@module("node:child_process") @val
 external execSync: string => Buffer.t = "execSync"
 
-@module("child_process") @val
+@module("node:child_process") @val
 external execSyncWith: (string, execSyncOptions) => Buffer.t = "execSync"
 
-type execFileSyncOptions
+type execFileSyncOptions = {
+  cwd?: string,
+  env?: Js.Dict.t<string>,
+  input?: Buffer.t,
+  shell?: string,
+  timeout?: int,
+  maxBuffer?: int,
+  killSignal?: string,
+  uid?: int,
+  gid?: int,
+  windowsHide?: bool,
+}
 
-@obj
-external execFileSyncOptions: (
-  ~cwd: string=?,
-  ~env: Js.Dict.t<string>=?,
-  ~input: Buffer.t=?,
-  ~shell: string=?,
-  ~timeout: int=?,
-  ~maxBuffer: int=?,
-  ~killSignal: string=?,
-  ~uid: int=?,
-  ~gid: int=?,
-  ~windowsHide: bool=?,
-  unit,
-) => execFileSyncOptions = ""
-
-@module("child_process") @val
+@module("node:child_process") @val
 external execFileSync: (string, array<string>) => Buffer.t = "execFileSync"
 
-@module("child_process") @val
+@module("node:child_process") @val
 external execFileSyncWith: (string, array<string>, execFileSyncOptions) => Buffer.t = "execFileSync"

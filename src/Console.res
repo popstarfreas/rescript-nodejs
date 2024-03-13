@@ -4,20 +4,17 @@
 type t
 @val external console: t = "console"
 
-type consoleOptions
-@obj
-external consoleOptions: (
-  ~stdout: Stream.Writable.subtype<'w, 'a>,
-  ~stderr: Stream.Writable.subtype<'w, 'a>=?,
-  ~ignoreErrors: bool=?,
-  ~colorMode: bool=?,
-  ~inspectOptions: Util.inspectOptions=?,
-  unit,
-) => consoleOptions = ""
+type consoleOptions<'w, 'a> = {
+  stdout: Stream.Writable.subtype<'w, 'a>,
+  stderr?: Stream.Writable.subtype<'w, 'a>,
+  ignoreErrors?: bool,
+  colorMode?: bool,
+  inspectOptions?: Util.inspectOptions,
+}
 
-@new @module("console")
-external make: consoleOptions => t = "Console"
-@new @module("console")
+@new @module("node:console")
+external make: consoleOptions<'w, 'a> => t = "Console"
+@new @module("node:console")
 external make2: {.."stdout": Stream.Writable.subtype<'w, 'a>} => t = "Console"
 
 @send external assert_: (t, bool) => unit = "assert"

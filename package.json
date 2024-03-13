@@ -1,29 +1,35 @@
 {
   "name": "@popstarfreas/rescript-nodejs",
-  "version": "16.0.0",
+  "version": "16.1.0",
   "scripts": {
-    "build": "rescript build",
+    "build": "rescript",
     "build:clean": "rescript clean && rescript build",
     "build:watch": "rescript build -w",
     "build:watch:clean": "rescript clean && rescript build -w",
-    "test": "pta lib/js/test/**/*.js",
-    "test:clean": "rescript clean && rescript build && jest",
+    "test": "pta lib/js/test/atomic/*.test.bs.js",
+    "test:clean": "rescript clean && rescript build && yarn test",
     "clean": "rescript clean"
   },
+  "description": "Node bindings for ReScript",
+  "license": "MIT",
+  "devDependencies": {
+    "@dusty-phillips/rescript-zora": "^4.0.0",
+    "pta": "^1.2.0",
+    "rescript": "^11.0.1",
+    "zora": "^5.2.0"
+  },
+  "files": [
+    "docs",
+    "examples",
+    "lib/js",
+    "src",
+    "test",
+    "bsconfig.json",
+    "CHANGELOG.md"
+  ],
   "keywords": [
     "Rescript"
   ],
-  "author": "Sikan He & Austin Davis & popstarfreas",
-  "homepage": "https://github.com/popstarfreas/rescript-nodejs",
-  "license": "MIT",
-  "dependencies": {
-    "rescript": "^10.1.4"
-  },
-  "devDependencies": {
-    "@dusty-phillips/rescript-zora": "^3.0.1",
-    "@glennsl/bs-jest": "^0.7.0",
-    "@ryyppy/rescript-promise": "^2.1.0",
-    "pta": "^1.1.2",
-    "zora": "^5.0.4"
-  }
+  "author": "Sikan He & Austin Davis & popstarfreas & Andrew Herron",
+  "homepage": "https://github.com/popstarfreas/rescript-nodejs"
 }

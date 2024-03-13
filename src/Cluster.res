@@ -51,10 +51,10 @@ module Message = {
 }
 
 module Worker = {
-  type t
+  type t = {id: int, process: ChildProcess.t}
   module Events = {
     @send
-    external onDisconnect: (t, @as("disconnect") _, @uncurry (unit => unit)) => t = "on"
+    external onDisconnect: (t, @as("disconnect") _, @uncurry unit => unit) => t = "on"
     @send
     external onError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "on"
     @send
@@ -72,10 +72,10 @@ module Worker = {
       @uncurry (Message.t<'a>, Js.nullable<'a>) => unit,
     ) => t = "on"
     @send
-    external onOnline: (t, @as("online") _, @uncurry (unit => unit)) => t = "on"
+    external onOnline: (t, @as("online") _, @uncurry unit => unit) => t = "on"
 
     @send
-    external offDisconnect: (t, @as("disconnect") _, @uncurry (unit => unit)) => t = "off"
+    external offDisconnect: (t, @as("disconnect") _, @uncurry unit => unit) => t = "off"
     @send
     external offError: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "off"
     @send
@@ -93,10 +93,10 @@ module Worker = {
       @uncurry (Message.t<'a>, Js.nullable<'a>) => unit,
     ) => t = "off"
     @send
-    external offOnline: (t, @as("online") _, @uncurry (unit => unit)) => t = "off"
+    external offOnline: (t, @as("online") _, @uncurry unit => unit) => t = "off"
 
     @send
-    external onDisconnectOnce: (t, @as("disconnect") _, @uncurry (unit => unit)) => t = "once"
+    external onDisconnectOnce: (t, @as("disconnect") _, @uncurry unit => unit) => t = "once"
     @send
     external onErrorOnce: (t, @as("error") _, @uncurry (Js.Exn.t => unit)) => t = "once"
     @send
@@ -114,19 +114,19 @@ module Worker = {
       @uncurry (Message.t<'a>, Js.nullable<'a>) => unit,
     ) => t = "once"
     @send
-    external onOnlineOnce: (t, @as("online") _, @uncurry (unit => unit)) => t = "once"
+    external onOnlineOnce: (t, @as("online") _, @uncurry unit => unit) => t = "once"
 
     @send external removeAllListeners: t => unit = "removeAllListeners"
   }
   @send external disconnect: t => unit = "disconnect"
   @send
   external exitedAfterDisconnect: t => bool = "exitedAfterDisconnect"
-  @send external id: t => int = "id"
+  @get external id: t => int = "id"
   @send external isConnected: t => bool = "isConnected"
   @send external isDead: t => bool = "isConnected"
   @send external kill: t => unit = "kill"
   @send external killWith: (t, ~signal: string) => unit = "kill"
-  @send external process: t => ChildProcess.t = "process"
+  @get external process: t => ChildProcess.t = "process"
   @send external send: string => unit = "send"
 
   @send
@@ -154,36 +154,20 @@ type clusterSettings = private {
   windowsHide: Js.nullable<bool>,
 }
 
-@obj
-external clusterSettings: (
-  ~execArgv: array<string>=?,
-  ~exec: string=?,
-  ~args: array<string>=?,
-  ~cwd: string=?,
-  ~serialization: string=?,
-  ~silent: bool=?,
-  ~stdio: array<string>=?,
-  ~uid: int=?,
-  ~gid: int=?,
-  ~inspectPort: int=?,
-  ~windowsHide: bool=?,
-  unit,
-) => clusterSettings = ""
-
 @module
 external disconnect: Js.Nullable.t<unit => unit> => unit = "disconnect"
 let disconnect = (~callback=?, ()) => disconnect(Js.Nullable.fromOption(callback))
-@module("cluster")
+@module("node:cluster")
 external fork: option<Js.Dict.t<string>> => Worker.t = "fork"
 let fork = (~env=?, ()) => fork(env)
-@module("cluster") external isMaster: bool = "isMaster"
-@module("cluster") external isWorker: bool = "isWorker"
-@module("cluster") external settings: clusterSettings = "settings"
-@module("cluster")
+@module("node:cluster") external isMaster: bool = "isMaster"
+@module("node:cluster") external isWorker: bool = "isWorker"
+@module("node:cluster") external settings: clusterSettings = "settings"
+@module("node:cluster")
 external setupMaster: clusterSettings => unit = "setupMaster"
-@module("cluster") external _SCHED_NONE: int = "SCHED_NONE"
-@module("cluster") external _SCHED_RR: int = "SCHED_RR"
-@module("cluster") external schedulingPolicy: int = "schedulingPolicy"
+@module("node:cluster") external _SCHED_NONE: int = "SCHED_NONE"
+@module("node:cluster") external _SCHED_RR: int = "SCHED_RR"
+@module("node:cluster") external schedulingPolicy: int = "schedulingPolicy"
 type schedulingPolicy =
   | SCHED_NONE
   | SCHED_RR
@@ -192,7 +176,7 @@ let decodeSchedulingPolicy = if schedulingPolicy === _SCHED_RR {
 } else {
   SCHED_NONE
 }
-@module("cluster") external worker: Worker.t = "worker"
-@module("cluster") external workers: Js.Dict.t<Worker.t> = "workers"
+@module("node:cluster") external worker: Worker.t = "worker"
+@module("node:cluster") external workers: Js.Dict.t<Worker.t> = "workers"
 let getWorker: (Js.Dict.t<Worker.t>, int) => option<Worker.t> = (_workers, id) =>
   Js.Dict.get(_workers, Js.Int.toString(id))

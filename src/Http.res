@@ -100,37 +100,31 @@ module IncomingMessage = {
     external onAborted: (
       subtype<'r, 'a>,
       @as("aborted") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'r, 'a> = "on"
     @send
-    external onClose: (
-      subtype<'r, 'a>,
-      @as("close") _,
-      @uncurry (unit => unit),
-    ) => subtype<'r, 'a> = "on"
+    external onClose: (subtype<'r, 'a>, @as("close") _, @uncurry unit => unit) => subtype<'r, 'a> =
+      "on"
     @send
     external offAborted: (
       subtype<'r, 'a>,
       @as("aborted") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'r, 'a> = "off"
     @send
-    external offClose: (
-      subtype<'r, 'a>,
-      @as("close") _,
-      @uncurry (unit => unit),
-    ) => subtype<'r, 'a> = "off"
+    external offClose: (subtype<'r, 'a>, @as("close") _, @uncurry unit => unit) => subtype<'r, 'a> =
+      "off"
     @send
     external onAbortedOnce: (
       subtype<'r, 'a>,
       @as("aborted") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'r, 'a> = "once"
     @send
     external onCloseOnce: (
       subtype<'r, 'a>,
       @as("close") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'r, 'a> = "once"
   }
 
@@ -190,7 +184,7 @@ module ClientRequest = {
     external onAbort: (
       subtype<'w, 'r, 'a>,
       @as("abort") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "on"
     @send
     external onConnect: (
@@ -202,31 +196,31 @@ module ClientRequest = {
     external onContinue: (
       subtype<'w, 'r, 'a>,
       @as("continue") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "on"
     @send
     external onInformation: (
       subtype<'w, 'r, 'a>,
       @as("information") _,
-      @uncurry (information => unit),
+      @uncurry information => unit,
     ) => subtype<'w, 'r, 'a> = "on"
     @send
     external onResponse: (
       subtype<'w, 'r, 'a>,
       @as("response") _,
-      @uncurry (IncomingMessage.t => unit),
+      @uncurry IncomingMessage.t => unit,
     ) => subtype<'w, 'r, 'a> = "on"
     @send
     external onSocket: (
       subtype<'w, 'r, 'a>,
       @as("socket") _,
-      @uncurry (Net.TcpSocket.t => unit),
+      @uncurry Net.TcpSocket.t => unit,
     ) => subtype<'w, 'r, 'a> = "on"
     @send
     external onTimeout: (
       subtype<'w, 'r, 'a>,
       @as("timeout") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "on"
     @send
     external onUpgrade: (
@@ -239,7 +233,7 @@ module ClientRequest = {
     external offAbort: (
       subtype<'w, 'r, 'a>,
       @as("abort") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "off"
     @send
     external offConnect: (
@@ -251,31 +245,31 @@ module ClientRequest = {
     external offContinue: (
       subtype<'w, 'r, 'a>,
       @as("continue") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "off"
     @send
     external offInformation: (
       subtype<'w, 'r, 'a>,
       @as("information") _,
-      @uncurry (information => unit),
+      @uncurry information => unit,
     ) => subtype<'w, 'r, 'a> = "off"
     @send
     external offResponse: (
       subtype<'w, 'r, 'a>,
       @as("response") _,
-      @uncurry (IncomingMessage.t => unit),
+      @uncurry IncomingMessage.t => unit,
     ) => subtype<'w, 'r, 'a> = "off"
     @send
     external offSocket: (
       subtype<'w, 'r, 'a>,
       @as("socket") _,
-      @uncurry (Net.TcpSocket.t => unit),
+      @uncurry Net.TcpSocket.t => unit,
     ) => subtype<'w, 'r, 'a> = "off"
     @send
     external offTimeout: (
       subtype<'w, 'r, 'a>,
       @as("timeout") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "off"
     @send
     external offUpgrade: (
@@ -288,7 +282,7 @@ module ClientRequest = {
     external onAbortOnce: (
       subtype<'w, 'r, 'a>,
       @as("abort") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "once"
     @send
     external onConnectOnce: (
@@ -300,31 +294,31 @@ module ClientRequest = {
     external onContinueOnce: (
       subtype<'w, 'r, 'a>,
       @as("continue") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "once"
     @send
     external onInformationOnce: (
       subtype<'w, 'r, 'a>,
       @as("information") _,
-      @uncurry (information => unit),
+      @uncurry information => unit,
     ) => subtype<'w, 'r, 'a> = "once"
     @send
     external onResponseOnce: (
       subtype<'w, 'r, 'a>,
       @as("response") _,
-      @uncurry (IncomingMessage.t => unit),
+      @uncurry IncomingMessage.t => unit,
     ) => subtype<'w, 'r, 'a> = "once"
     @send
     external onSocketOnce: (
       subtype<'w, 'r, 'a>,
       @as("socket") _,
-      @uncurry (Net.TcpSocket.t => unit),
+      @uncurry Net.TcpSocket.t => unit,
     ) => subtype<'w, 'r, 'a> = "once"
     @send
     external onTimeoutOnce: (
       subtype<'w, 'r, 'a>,
       @as("timeout") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "once"
     @send
     external onUpgradeOnce: (
@@ -393,37 +387,37 @@ module ServerResponse = {
     external onClose: (
       subtype<'w, 'r, 'a>,
       @as("close") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "on"
     @send
     external onFinish: (
       subtype<'w, 'r, 'a>,
       @as("finish") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "on"
     @send
     external offClose: (
       subtype<'w, 'r, 'a>,
       @as("close") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "off"
     @send
     external offFinish: (
       subtype<'w, 'r, 'a>,
       @as("finish") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "off"
     @send
     external onCloseOnce: (
       subtype<'w, 'r, 'a>,
       @as("close") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "once"
     @send
     external onFinishOnce: (
       subtype<'w, 'r, 'a>,
       @as("finish") _,
-      @uncurry (unit => unit),
+      @uncurry unit => unit,
     ) => subtype<'w, 'r, 'a> = "once"
   }
   module Impl = {
@@ -560,7 +554,7 @@ module Server = {
     external onTimeout: (
       subtype<'a>,
       @as("timeout") _,
-      @uncurry (Net.TcpSocket.t => unit),
+      @uncurry Net.TcpSocket.t => unit,
     ) => subtype<'a> = "on"
     @send
     external offCheckContinue: (
@@ -602,7 +596,7 @@ module Server = {
     external offTimeout: (
       subtype<'a>,
       @as("timeout") _,
-      @uncurry (Net.TcpSocket.t => unit),
+      @uncurry Net.TcpSocket.t => unit,
     ) => subtype<'a> = "off"
     @send
     external onCheckContinueOnce: (
@@ -644,13 +638,13 @@ module Server = {
     external onTimeoutOnce: (
       subtype<'a>,
       @as("timeout") _,
-      @uncurry (Net.TcpSocket.t => unit),
+      @uncurry Net.TcpSocket.t => unit,
     ) => subtype<'a> = "once"
   }
   module Impl = {
     include Events
     @send
-    external setTimeout: (subtype<'a>, int, @uncurry (Net.Socket.t => unit)) => unit = "setTimeout"
+    external setTimeout: (subtype<'a>, int, @uncurry Net.Socket.t => unit) => unit = "setTimeout"
     @get external timeout: subtype<'a> => int = "timeout"
     @send
     external keepAliveTimeout: (subtype<'a>, int) => unit = "keepAliveTimeout"
@@ -663,106 +657,99 @@ module Server = {
   include Impl
 }
 
-type createServerOptions
+type createServerOptions = {
+  incomingMessage?: IncomingMessage.t,
+  serverResponse?: ServerResponse.t,
+  maxHeaderSize?: int,
+}
 
-@obj
-external createServerOptions: (
-  ~incomingMessage: IncomingMessage.t=?,
-  ~serverResponse: ServerResponse.t=?,
-  ~maxHeaderSize: int=?,
-  unit,
-) => createServerOptions = ""
-
-@module("http")
+@module("node:http")
 external createServer: (@uncurry (IncomingMessage.t, ServerResponse.t) => unit) => Server.t =
   "createServer"
 
-@module("http")
+@module("node:http")
 external createServerWithOptions: (
   createServerOptions,
   (IncomingMessage.t, ServerResponse.t) => unit,
 ) => Server.t = "createServer"
 
-@module("http") external _METHODS: array<string> = "METHODS"
-@module("http")
+@module("node:http") external _METHODS: array<string> = "METHODS"
+@module("node:http")
 external _STATUS_CODES: Js.Dict.t<string> = "STATUS_CODES"
 
-type requestOptions
-@obj
-external requestOptions: (
-  ~agent: Agent.t=?,
-  ~auth: string=?,
-  ~createConnection: unit => Net.TcpSocket.t=?,
-  ~defaultPort: int=?,
-  ~family: int=?,
-  ~headers: headersObject=?,
-  ~host: string=?,
-  ~hostName: string=?,
-  ~localAddress: string=?,
-  ~lookup: (string, Dns.lookupOptions, (Js.Exn.t, string, int) => unit) => string=?,
-  ~maxHeaderSize: int=?,
-  ~method: string=?,
-  ~path: string=?,
-  ~port: int=?,
-  ~protocol: string=?,
-  ~setHost: bool=?,
-  ~socketPath: string=?,
-  ~timeout: int=?,
-  unit,
-) => requestOptions = ""
+type requestOptions = {
+  agent?: Agent.t,
+  auth?: string,
+  createConnection?: unit => Net.TcpSocket.t,
+  defaultPort?: int,
+  family?: int,
+  headers?: headersObject,
+  host?: string,
+  hostName?: string,
+  localAddress?: string,
+  lookup?: (string, Dns.options, (Js.Exn.t, string, int) => unit) => string,
+  maxHeaderSize?: int,
+  method?: string,
+  path?: string,
+  port?: int,
+  protocol?: string,
+  setHost?: bool,
+  socketPath?: string,
+  timeout?: int,
+}
 
-@module("http") external request: string => ClientRequest.t = "request"
-@module("http")
+@module("node:http") external request: string => ClientRequest.t = "request"
+@module("node:http")
 external requestWithCallback: (string, IncomingMessage.t => unit) => ClientRequest.t = "request"
-@module("http")
+@module("node:http")
 external requestWithOptions: (string, requestOptions) => ClientRequest.t = "request"
-@module("http")
+@module("node:http")
 external requestWithOptionsCallback: (
   string,
   requestOptions,
   IncomingMessage.t => unit,
 ) => ClientRequest.t = "request"
-@module("http") external requestUrl: Url.t => ClientRequest.t = "request"
-@module("http")
+@module("node:http") external requestUrl: Url.t => ClientRequest.t = "request"
+@module("node:http")
 external requestUrlWithCallback: (Url.t, IncomingMessage.t => unit) => ClientRequest.t = "request"
-@module("http")
+@module("node:http")
 external requestUrlWithOptions: (Url.t, requestOptions) => ClientRequest.t = "request"
-@module("http")
+@module("node:http")
 external requestUrlWithOptionsCallback: (
   Url.t,
   requestOptions,
   IncomingMessage.t => unit,
 ) => ClientRequest.t = "request"
 
-@module("http") external get: string => ClientRequest.t = "get"
-@module("http")
+@module("node:http") external get: string => ClientRequest.t = "get"
+@module("node:http")
 external getWithCallback: (string, IncomingMessage.t => unit) => ClientRequest.t = "get"
-@module("http")
+@module("node:http")
 external getWithOptions: (string, requestOptions) => ClientRequest.t = "get"
-@module("http")
+@module("node:http")
 external getWithOptionsCallback: (
   string,
   requestOptions,
   IncomingMessage.t => unit,
 ) => ClientRequest.t = "get"
 
-@module("http") external getUrl: Url.t => ClientRequest.t = "get"
-@module("http")
+@module("node:http") external getUrl: Url.t => ClientRequest.t = "get"
+@module("node:http")
 external getUrlWithCallback: (Url.t, IncomingMessage.t => unit) => ClientRequest.t = "get"
-@module("http")
+@module("node:http")
 external getUrlWithOptions: (Url.t, requestOptions) => ClientRequest.t = "get"
-@module("http")
+@module("node:http")
 external getUrlWithOptionsCallback: (
   Url.t,
   requestOptions,
   IncomingMessage.t => unit,
 ) => ClientRequest.t = "get"
 
-@module("http") external globalAgent: Agent.t = "globalAgent"
-@module("http") external maxHeaderSize: int = "maxHeaderSize"
+@module("node:http") external globalAgent: Agent.t = "globalAgent"
+@module("node:http") external maxHeaderSize: int = "maxHeaderSize"
 
 type statusCodes = Js.Dict.t<string>
-@module("http") external _STATUS_CODES: statusCodes = "STATUS_CODES"
+@module("node:http") external _STATUS_CODES: statusCodes = "STATUS_CODES"
 
 type methods = array<string>
-@module("http") external _METHODS: methods = "METHODS"
+@module("node:http") external _METHODS: methods = "METHODS"

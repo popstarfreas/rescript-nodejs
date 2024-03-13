@@ -1,8 +1,6 @@
 open Zora
 open StreamTestLib
 
-let {resolve: done} = module(Promise)
-
 zoraBlock("Stream.Readable", t => {
   t->block("'Stream.Readable.make' should return a defined value", t => {
     let readable = makeReadableEmpty()
@@ -23,17 +21,18 @@ zoraBlock("Stream.Readable", t => {
   t->test("'Stream.Readable.destroyWithError' should emit 'error' event", t => {
     open! Errors
     let dummyError = Error.make("Expected error: Stream destroyed")->Error.toJsExn
-    Promise.make((resolve, _reject) => {
-      let stream = StreamTestLib.makeReadableEmpty()->Stream.onError(err => {
-        t->equal(err, dummyError, "")
+    Js.Promise2.make(
+      (~resolve, ~reject as _) => {
+        let stream = StreamTestLib.makeReadableEmpty()->Stream.onError(
+          err => {
+            t->equal(err, dummyError, "")
+            resolve()
+          },
+        )
 
-        // oh these bindings are wonderful aren't they
-        let a = ()
-        resolve(. a)
-      })
-
-      Js.Global.setTimeout(() => stream->Stream.destroyWithError(dummyError)->ignore, 10)->ignore
-    })
+        Js.Global.setTimeout(() => stream->Stream.destroyWithError(dummyError)->ignore, 10)->ignore
+      },
+    )
   })
 
   t->block("'Stream.Readable.destroy' should return the exact same instance of 'Readable'", t => {
@@ -69,32 +68,32 @@ zoraBlock("Stream.Writable", t => {
         (),
       )
 
-      Promise.make((resolve, _reject) => {
-        let writeStream = Writable.makeObjMode(options)
+      Js.Promise2.make(
+        (~resolve, ~reject as _) => {
+          let writeStream = Writable.makeObjMode(options)
 
-        Writable.writeWith(
-          writeStream,
-          42,
-          ~callback=_ => {
-            let actual = switch args.contents {
-            | None => None
-            | Some((wstream, value, encoding, cb)) =>
-              Some((
-                Internal__JsTypeReflection.constructorName(wstream) === "Writable",
-                Js.typeof(value) === "number",
-                Js.typeof(encoding) === "string",
-                Js.typeof(cb) === "function",
-              ))
-            }
-            t->equal(actual, Some((true, true, true, true)), "")
+          Writable.writeWith(
+            writeStream,
+            42,
+            ~callback=_ => {
+              let actual = switch args.contents {
+              | None => None
+              | Some((wstream, value, encoding, cb)) =>
+                Some((
+                  Internal__JsTypeReflection.constructorName(wstream),
+                  Js.typeof(value),
+                  encoding,
+                  Js.typeof(cb),
+                ))
+              }
+              t->equal(actual, Some(("Writable", "number", Js.null, "function")), "")
 
-            // oh these bindings are wonderful aren't they
-            let a = ()
-            resolve(. a)
-          },
-          (),
-        )->ignore
-      })
+              resolve()
+            },
+            (),
+          )->ignore
+        },
+      )
     },
   )
 })
