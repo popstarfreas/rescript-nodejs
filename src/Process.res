@@ -47,6 +47,18 @@ module Events = {
   ) => t = "on"
   @send
   external onWarning: (t, @as("warning") _, @uncurry (warning => unit)) => t = "on"
+  @send
+  external onSigInt: (t, @as("SIGINT") _, @uncurry (warning => unit)) => t = "on"
+  @send
+  external onSigTerm: (t, @as("SIGTERM") _, @uncurry (warning => unit)) => t = "on"
+  @send
+  external onSigWinch: (t, @as("SIGWINCH") _, @uncurry (warning => unit)) => t = "on"
+  @send
+  external onSigBreak: (t, @as("SIGBREAK") _, @uncurry (warning => unit)) => t = "on"
+  @send
+  external onSigHup: (t, @as("SIGHUP") _, @uncurry (warning => unit)) => t = "on"
+  @send
+  external onSigPipe: (t, @as("SIGPIPE") _, @uncurry (warning => unit)) => t = "on"
 
   @send
   external offBeforeExit: (t, @as("beforeExit") _, @uncurry (int => unit)) => t = "off"
@@ -80,39 +92,63 @@ module Events = {
   ) => t = "off"
   @send
   external offWarning: (t, @as("warning") _, @uncurry (warning => unit)) => t = "off"
+  @send
+  external offSigInt: (t, @as("SIGINT") _, @uncurry (warning => unit)) => t = "off"
+  @send
+  external offSigTerm: (t, @as("SIGTERM") _, @uncurry (warning => unit)) => t = "off"
+  @send
+  external offSigWinch: (t, @as("SIGWINCH") _, @uncurry (warning => unit)) => t = "off"
+  @send
+  external offSigBreak: (t, @as("SIGBREAK") _, @uncurry (warning => unit)) => t = "off"
+  @send
+  external offSigHup: (t, @as("SIGHUP") _, @uncurry (warning => unit)) => t = "off"
+  @send
+  external offSigPipe: (t, @as("SIGPIPE") _, @uncurry (warning => unit)) => t = "off"
 
   @send
-  external onBeforeExitOnce: (t, @as("beforeExit") _, @uncurry (int => unit)) => t = "once"
+  external onceBeforeExit: (t, @as("beforeExit") _, @uncurry (int => unit)) => t = "once"
   @send
-  external onDisconnectOnce: (t, @as("disconnect") _, @uncurry (unit => unit)) => t = "once"
+  external onceDisconnect: (t, @as("disconnect") _, @uncurry (unit => unit)) => t = "once"
   @send
-  external onExitOnce: (t, @as("exit") _, @uncurry (int => unit)) => unit = "once"
+  external onceExit: (t, @as("exit") _, @uncurry (int => unit)) => unit = "once"
   @send
-  external onMultipleResolvesOnce: (
+  external onceMultipleResolves: (
     t,
     @as("multipleResolves") _,
     @uncurry (string, Js.Promise.t<'a>, 'a) => unit,
   ) => t = "once"
   @send
-  external onRejectionHandledOnce: (
+  external onceRejectionHandled: (
     t,
     @as("rejectionHandled") _,
     @uncurry (Js.Promise.t<'a> => unit),
   ) => t = "once"
   @send
-  external onUncaughtExceptionOnce: (
+  external onceUncaughtException: (
     t,
     @as("uncaughtException") _,
     @uncurry (Js.Exn.t, string) => unit,
   ) => t = "once"
   @send
-  external onUnhandledRejectionOnce: (
+  external onceUnhandledRejection: (
     t,
     @as("unhandledRejection") _,
     @uncurry (Js.Exn.t, Js.Promise.t<'a>) => unit,
   ) => t = "once"
   @send
-  external onWarningOnce: (t, @as("warning") _, @uncurry (warning => unit)) => t = "once"
+  external onceWarning: (t, @as("warning") _, @uncurry (warning => unit)) => t = "once"
+  @send
+  external onceSigInt: (t, @as("SIGINT") _, @uncurry (warning => unit)) => t = "once"
+  @send
+  external onceSigTerm: (t, @as("SIGTERM") _, @uncurry (warning => unit)) => t = "once"
+  @send
+  external onceSigWinch: (t, @as("SIGWINCH") _, @uncurry (warning => unit)) => t = "once"
+  @send
+  external onceSigBreak: (t, @as("SIGBREAK") _, @uncurry (warning => unit)) => t = "once"
+  @send
+  external onceSigHup: (t, @as("SIGHUP") _, @uncurry (warning => unit)) => t = "once"
+  @send
+  external onceSigPipe: (t, @as("SIGPIPE") _, @uncurry (warning => unit)) => t = "once"
 
   @send external removeAllListeners: t => t = "removeAllListeners"
 }
