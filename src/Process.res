@@ -48,17 +48,17 @@ module Events = {
   @send
   external onWarning: (t, @as("warning") _, @uncurry (warning => unit)) => t = "on"
   @send
-  external onSigInt: (t, @as("SIGINT") _, @uncurry (warning => unit)) => t = "on"
+  external onSigInt: (t, @as("SIGINT") _, @uncurry (unit => unit)) => t = "on"
   @send
-  external onSigTerm: (t, @as("SIGTERM") _, @uncurry (warning => unit)) => t = "on"
+  external onSigTerm: (t, @as("SIGTERM") _, @uncurry (unit => unit)) => t = "on"
   @send
-  external onSigWinch: (t, @as("SIGWINCH") _, @uncurry (warning => unit)) => t = "on"
+  external onSigWinch: (t, @as("SIGWINCH") _, @uncurry (unit => unit)) => t = "on"
   @send
-  external onSigBreak: (t, @as("SIGBREAK") _, @uncurry (warning => unit)) => t = "on"
+  external onSigBreak: (t, @as("SIGBREAK") _, @uncurry (unit => unit)) => t = "on"
   @send
-  external onSigHup: (t, @as("SIGHUP") _, @uncurry (warning => unit)) => t = "on"
+  external onSigHup: (t, @as("SIGHUP") _, @uncurry (unit => unit)) => t = "on"
   @send
-  external onSigPipe: (t, @as("SIGPIPE") _, @uncurry (warning => unit)) => t = "on"
+  external onSigPipe: (t, @as("SIGPIPE") _, @uncurry (unit => unit)) => t = "on"
 
   @send
   external offBeforeExit: (t, @as("beforeExit") _, @uncurry (int => unit)) => t = "off"
@@ -93,17 +93,17 @@ module Events = {
   @send
   external offWarning: (t, @as("warning") _, @uncurry (warning => unit)) => t = "off"
   @send
-  external offSigInt: (t, @as("SIGINT") _, @uncurry (warning => unit)) => t = "off"
+  external offSigInt: (t, @as("SIGINT") _, @uncurry (unit => unit)) => t = "off"
   @send
-  external offSigTerm: (t, @as("SIGTERM") _, @uncurry (warning => unit)) => t = "off"
+  external offSigTerm: (t, @as("SIGTERM") _, @uncurry (unit => unit)) => t = "off"
   @send
-  external offSigWinch: (t, @as("SIGWINCH") _, @uncurry (warning => unit)) => t = "off"
+  external offSigWinch: (t, @as("SIGWINCH") _, @uncurry (unit => unit)) => t = "off"
   @send
-  external offSigBreak: (t, @as("SIGBREAK") _, @uncurry (warning => unit)) => t = "off"
+  external offSigBreak: (t, @as("SIGBREAK") _, @uncurry (unit => unit)) => t = "off"
   @send
-  external offSigHup: (t, @as("SIGHUP") _, @uncurry (warning => unit)) => t = "off"
+  external offSigHup: (t, @as("SIGHUP") _, @uncurry (unit => unit)) => t = "off"
   @send
-  external offSigPipe: (t, @as("SIGPIPE") _, @uncurry (warning => unit)) => t = "off"
+  external offSigPipe: (t, @as("SIGPIPE") _, @uncurry (unit => unit)) => t = "off"
 
   @send
   external onceBeforeExit: (t, @as("beforeExit") _, @uncurry (int => unit)) => t = "once"
@@ -138,17 +138,17 @@ module Events = {
   @send
   external onceWarning: (t, @as("warning") _, @uncurry (warning => unit)) => t = "once"
   @send
-  external onceSigInt: (t, @as("SIGINT") _, @uncurry (warning => unit)) => t = "once"
+  external onceSigInt: (t, @as("SIGINT") _, @uncurry (unit => unit)) => t = "once"
   @send
-  external onceSigTerm: (t, @as("SIGTERM") _, @uncurry (warning => unit)) => t = "once"
+  external onceSigTerm: (t, @as("SIGTERM") _, @uncurry (unit => unit)) => t = "once"
   @send
-  external onceSigWinch: (t, @as("SIGWINCH") _, @uncurry (warning => unit)) => t = "once"
+  external onceSigWinch: (t, @as("SIGWINCH") _, @uncurry (unit => unit)) => t = "once"
   @send
-  external onceSigBreak: (t, @as("SIGBREAK") _, @uncurry (warning => unit)) => t = "once"
+  external onceSigBreak: (t, @as("SIGBREAK") _, @uncurry (unit => unit)) => t = "once"
   @send
-  external onceSigHup: (t, @as("SIGHUP") _, @uncurry (warning => unit)) => t = "once"
+  external onceSigHup: (t, @as("SIGHUP") _, @uncurry (unit => unit)) => t = "once"
   @send
-  external onceSigPipe: (t, @as("SIGPIPE") _, @uncurry (warning => unit)) => t = "once"
+  external onceSigPipe: (t, @as("SIGPIPE") _, @uncurry (unit => unit)) => t = "once"
 
   @send external removeAllListeners: t => t = "removeAllListeners"
 }
