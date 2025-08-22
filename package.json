@@ -7,15 +7,17 @@
     "build:watch": "rescript build -w",
     "build:watch:clean": "rescript clean && rescript build -w",
     "test": "pta lib/js/test/atomic/*.test.bs.js",
-    "test:clean": "rescript clean && rescript build && yarn test",
+    "test:clean": "rescript clean && rescript build && npm run test",
     "clean": "rescript clean"
   },
   "description": "Node bindings for ReScript",
   "license": "MIT",
   "devDependencies": {
     "@dusty-phillips/rescript-zora": "^4.0.0",
-    "pta": "^1.2.0",
-    "rescript": "^11.0.1",
+    "changie": "^1.18.0",
+    "onchange": "^7.1.0",
+    "pta": "1.2.0",
+    "rescript": "^11.1.0",
     "zora": "^5.2.0"
   },
   "files": [

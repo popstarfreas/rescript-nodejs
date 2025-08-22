@@ -31,6 +31,12 @@ KeyObject = {
   include Impl
 }
 
+type binaryToTextEncoding =
+  | @as("base64") Base64
+  | @as("base64url") Base64url
+  | @as("hex") Hex
+  | @as("binary") Binary
+
 module PivateKey = {
   include KeyObject.Impl
   type kind = [KeyObject.privateKey]
@@ -59,8 +65,10 @@ module Hash = {
     include Stream.Transform.Impl
     @send external copy: t => t = "copy"
     @send external digest: t => Buffer.t = "digest"
-    @send external digestWithEncoding: (t, string) => string = "digest"
     @send external update: (t, Buffer.t) => t = "update"
+    @send external updateString: (t, string) => t = "update"
+    @send external updateStringWithEncoding: (t, string, NodeJs.StringEncoding.t) => t = "update"
+    @send external digestWithEncoding: (t, binaryToTextEncoding) => string = "digest"
   }
   include Impl
 }
