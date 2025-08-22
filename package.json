@@ -26,7 +26,7 @@
     "lib/js",
     "src",
     "test",
-    "bsconfig.json",
+    "rescript.json",
     "CHANGELOG.md"
   ],
   "keywords": [
