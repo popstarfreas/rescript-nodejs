@@ -7,6 +7,5 @@ zoraBlock("Os", t => {
     t->equal(Js.Dict.get(ifaces, "lo")->Belt.Option.isSome, true, "")
     let localhost = (Js.Dict.get(ifaces, "lo")->Belt.Option.getExn->Belt.Array.getExn(0)).address
     t->equal(localhost, "127.0.0.1", "")
-    Js.Console.log(ifaces)
   })
 })
