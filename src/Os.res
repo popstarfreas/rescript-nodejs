@@ -28,3 +28,13 @@ external setPriority: (int, int) => unit = "setPriority"
 @module("node:os") @val external totalmem: unit => int = "totalmem"
 @module("node:os") @val external type_: unit => string = "type"
 @module("node:os") @val external uptime: unit => int = "uptime"
+type networkInterface = {
+  address: string,
+  netmask: string,
+  family: string,
+  mac: string,
+  internal: bool,
+  cidr: string,
+}
+@module("node:os")
+external networkInterfaces: unit => Js.Dict.t<networkInterface> = "networkInterfaces"
