@@ -37,4 +37,4 @@ type networkInterface = {
   cidr: string,
 }
 @module("node:os")
-external networkInterfaces: unit => Js.Dict.t<networkInterface> = "networkInterfaces"
+external networkInterfaces: unit => Js.Dict.t<array<networkInterface>> = "networkInterfaces"
