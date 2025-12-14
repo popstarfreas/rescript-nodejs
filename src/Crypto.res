@@ -67,7 +67,7 @@ module Hash = {
     @send external digest: t => Buffer.t = "digest"
     @send external update: (t, Buffer.t) => t = "update"
     @send external updateString: (t, string) => t = "update"
-    @send external updateStringWithEncoding: (t, string, NodeJs.StringEncoding.t) => t = "update"
+    @send external updateStringWithEncoding: (t, string, StringEncoding.t) => t = "update"
     @send external digestWithEncoding: (t, binaryToTextEncoding) => string = "digest"
   }
   include Impl
