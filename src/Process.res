@@ -1,7 +1,7 @@
 type t = {
   argv: array<string>,
   argv0: string,
-  env: Js.Dict.t<string>,
+  env: dict<string>,
   execArgv: array<string>,
   execPath: string,
   exitCode: int,
@@ -25,25 +25,22 @@ module Events = {
   external onMultipleResolves: (
     t,
     @as("multipleResolves") _,
-    @uncurry (string, Js.Promise.t<'a>, 'a) => unit,
+    @uncurry (string, promise<'a>, 'a) => unit,
   ) => t = "on"
   @send
-  external onRejectionHandled: (
-    t,
-    @as("rejectionHandled") _,
-    @uncurry (Js.Promise.t<'a> => unit),
-  ) => t = "on"
+  external onRejectionHandled: (t, @as("rejectionHandled") _, @uncurry (promise<'a> => unit)) => t =
+    "on"
   @send
   external onUncaughtException: (
     t,
     @as("uncaughtException") _,
-    @uncurry (Js.Exn.t, string) => unit,
+    @uncurry (JsExn.t, string) => unit,
   ) => t = "on"
   @send
   external onUnhandledRejection: (
     t,
     @as("unhandledRejection") _,
-    @uncurry (Js.Exn.t, Js.Promise.t<'a>) => unit,
+    @uncurry (JsExn.t, promise<'a>) => unit,
   ) => t = "on"
   @send
   external onWarning: (t, @as("warning") _, @uncurry (warning => unit)) => t = "on"
@@ -70,25 +67,25 @@ module Events = {
   external offMultipleResolves: (
     t,
     @as("multipleResolves") _,
-    @uncurry (string, Js.Promise.t<'a>, 'a) => unit,
+    @uncurry (string, promise<'a>, 'a) => unit,
   ) => t = "off"
   @send
   external offRejectionHandled: (
     t,
     @as("rejectionHandled") _,
-    @uncurry (Js.Promise.t<'a> => unit),
+    @uncurry (promise<'a> => unit),
   ) => t = "off"
   @send
   external offUncaughtException: (
     t,
     @as("uncaughtException") _,
-    @uncurry (Js.Exn.t, string) => unit,
+    @uncurry (JsExn.t, string) => unit,
   ) => t = "off"
   @send
   external offUnhandledRejection: (
     t,
     @as("unhandledRejection") _,
-    @uncurry (Js.Exn.t, Js.Promise.t<'a>) => unit,
+    @uncurry (JsExn.t, promise<'a>) => unit,
   ) => t = "off"
   @send
   external offWarning: (t, @as("warning") _, @uncurry (warning => unit)) => t = "off"
@@ -115,25 +112,25 @@ module Events = {
   external onceMultipleResolves: (
     t,
     @as("multipleResolves") _,
-    @uncurry (string, Js.Promise.t<'a>, 'a) => unit,
+    @uncurry (string, promise<'a>, 'a) => unit,
   ) => t = "once"
   @send
   external onceRejectionHandled: (
     t,
     @as("rejectionHandled") _,
-    @uncurry (Js.Promise.t<'a> => unit),
+    @uncurry (promise<'a> => unit),
   ) => t = "once"
   @send
   external onceUncaughtException: (
     t,
     @as("uncaughtException") _,
-    @uncurry (Js.Exn.t, string) => unit,
+    @uncurry (JsExn.t, string) => unit,
   ) => t = "once"
   @send
   external onceUnhandledRejection: (
     t,
     @as("unhandledRejection") _,
-    @uncurry (Js.Exn.t, Js.Promise.t<'a>) => unit,
+    @uncurry (JsExn.t, promise<'a>) => unit,
   ) => t = "once"
   @send
   external onceWarning: (t, @as("warning") _, @uncurry (warning => unit)) => t = "once"
@@ -160,7 +157,7 @@ include Events
 @send external chdir: (t, string) => unit = "chdir"
 @send external cwd: t => string = "cwd"
 @send external disconnect: t => unit = "disconnect"
-@get external env: t => Js.Dict.t<string> = "env"
+@get external env: t => dict<string> = "env"
 @get external execArgv: t => array<string> = "execArgv"
 @get external execPath: t => string = "execPath"
 @send external exit: (t, unit) => unit = "exit"
@@ -191,7 +188,7 @@ external hrtimeBigInt: t => BigInt.t = "bigint"
 @get external uptime: t => float = "uptime"
 @get external title: t => string = "title"
 @get external version: t => string = "version"
-@get external versions: t => Js.Dict.t<string> = "versions"
+@get external versions: t => dict<string> = "versions"
 type memoryUsageStats = {
   @as("rss")
   rss: int,

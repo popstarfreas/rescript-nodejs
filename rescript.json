@@ -18,14 +18,14 @@
   ],
   "package-specs": [
     {
-      "module": "commonjs",
+      "module": "es6",
       "in-source": false
     }
   ],
   "suffix": ".bs.js",
   "namespace": "NodeJs",
-  "bs-dependencies": [],
-  "bs-dev-dependencies": [
+  "dependencies": [],
+  "dev-dependencies": [
     "@dusty-phillips/rescript-zora"
   ],
   "warnings": {

@@ -1,5 +1,6 @@
 {
   "name": "@popstarfreas/rescript-nodejs",
+  "type": "module",
   "version": "16.1.0",
   "scripts": {
     "build": "rescript",
@@ -17,7 +18,7 @@
     "changie": "^1.18.0",
     "onchange": "^7.1.0",
     "pta": "1.2.0",
-    "rescript": "^11.1.0",
+    "rescript": "^12.0.1",
     "zora": "^5.2.0"
   },
   "files": [
@@ -33,5 +34,8 @@
     "Rescript"
   ],
   "author": "Sikan He & Austin Davis & popstarfreas & Andrew Herron",
-  "homepage": "https://github.com/popstarfreas/rescript-nodejs"
+  "homepage": "https://github.com/popstarfreas/rescript-nodejs",
+  "dependencies": {
+    "@rescript/linux-x64": "^12.0.1"
+  }
 }

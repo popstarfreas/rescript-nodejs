@@ -7,8 +7,8 @@ let outputPath = Path.relative(~from=Process.cwd(process), ~to_="example__output
 let writeStream = Fs.createWriteStream(outputPath)
 
 let logErrorIfExists = maybeError =>
-  switch Js.Nullable.toOption(maybeError) {
-  | Some(err) => Js.log2("An error occurred", err)
+  switch Nullable.toOption(maybeError) {
+  | Some(err) => Stdlib.Console.log2("An error occurred", err)
   | None => ()
   }
 
@@ -18,7 +18,7 @@ let () =
     data,
     ~callback=maybeError => {
       logErrorIfExists(maybeError)
-      Js.log("Finished")
+      Stdlib.Console.log("Finished")
     },
     (),
   )

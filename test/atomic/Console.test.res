@@ -20,7 +20,7 @@ zoraBlock("Console", t => {
     "stdout": Process.stdout(process),
   })
 
-  Js.log("=== Testing console output styles ===")
+  Stdlib.Console.log("=== Testing console output styles ===")
   c1->Console.logMany(["a", "b"])
   c2->Console.table(["hi", "bye"])
   c2->Console.table([
@@ -29,17 +29,17 @@ zoraBlock("Console", t => {
       "b": 2,
     },
   ])
-  Console.console->Console.dir({
+  Stdlib.Console.log({
     "hello": "world",
     "this": "is",
     "an": "object",
   })
-  Js.log("=== END testing console output styles ===")
+  Stdlib.Console.log("=== END testing console output styles ===")
 
   t->block("New console instance should be defined", t =>
-    t->notEqual(Js.Undefined.return(c1), Js.Undefined.empty, "")
+    t->notEqual(Nullable.make(c1), Nullable.undefined, "")
   )
   t->block("New console instance should be defined", t =>
-    t->notEqual(Js.Undefined.return(c2), Js.Undefined.empty, "")
+    t->notEqual(Nullable.make(c2), Nullable.undefined, "")
   )
 })

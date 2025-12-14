@@ -11,7 +11,7 @@ external \"+": (t, t) => t = "%addfloat"
 external \"-": (t, t) => t = "%subfloat"
 external \"*": (t, t) => t = "%mulfloat"
 external \"/": (t, t) => t = "%divfloat"
-let mod: (t, t) => t = Obj.magic(mod_float)
+let mod: (t, t) => t = %raw(`(a, b) => a % b`)
 let \"**": (t, t) => t = %raw(`function (a, b) { return (a ** b); }`)
 external land: (t, t) => t = "%andint"
 external lor: (t, t) => t = "%orint"
@@ -25,7 +25,7 @@ external add: (t, t) => t = "%addfloat"
 external subtract: (t, t) => t = "%subfloat"
 external multiply: (t, t) => t = "%mulfloat"
 external divide: (t, t) => t = "%divfloat"
-let modulo: (t, t) => t = Obj.magic(mod_float)
+let modulo: (t, t) => t = %raw(`(a, b) => a % b`)
 let power: (t, t) => t = \"**"
 external logicalAnd: (t, t) => t = "%andint"
 external logicalOr: (t, t) => t = "%orint"

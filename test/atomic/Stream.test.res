@@ -4,7 +4,7 @@ open StreamTestLib
 zoraBlock("Stream.Readable", t => {
   t->block("'Stream.Readable.make' should return a defined value", t => {
     let readable = makeReadableEmpty()
-    t->notEqual(readable->Js.Undefined.return, Js.Undefined.empty, "")
+    t->notEqual(readable->Nullable.make, Nullable.undefined, "")
   })
 
   t->block("'Stream.Readable.make' should return an instance of 'Readable'", t => {
@@ -21,8 +21,8 @@ zoraBlock("Stream.Readable", t => {
   t->test("'Stream.Readable.destroyWithError' should emit 'error' event", t => {
     open! Errors
     let dummyError = Error.make("Expected error: Stream destroyed")->Error.toJsExn
-    Js.Promise2.make(
-      (~resolve, ~reject as _) => {
+    Promise.make(
+      (resolve, _) => {
         let stream = StreamTestLib.makeReadableEmpty()->Stream.onError(
           err => {
             t->equal(err, dummyError, "")
@@ -30,7 +30,7 @@ zoraBlock("Stream.Readable", t => {
           },
         )
 
-        Js.Global.setTimeout(() => stream->Stream.destroyWithError(dummyError)->ignore, 10)->ignore
+        setTimeout(() => stream->Stream.destroyWithError(dummyError)->ignore, 10)->ignore
       },
     )
   })
@@ -44,7 +44,7 @@ zoraBlock("Stream.Readable", t => {
 zoraBlock("Stream.Writable", t => {
   t->block("'Stream.Writable.make' should return a defined value", t => {
     let writable = makeWritableEmpty()
-    t->notEqual(writable->Js.Undefined.return, Js.Undefined.empty, "")
+    t->notEqual(writable->Nullable.make, Nullable.undefined, "")
   })
 
   t->block("'Stream.Writable.make' should return an instance of 'Writable'", t => {
@@ -68,8 +68,8 @@ zoraBlock("Stream.Writable", t => {
         (),
       )
 
-      Js.Promise2.make(
-        (~resolve, ~reject as _) => {
+      Promise.make(
+        (resolve, _) => {
           let writeStream = Writable.makeObjMode(options)
 
           Writable.writeWith(
@@ -81,12 +81,12 @@ zoraBlock("Stream.Writable", t => {
               | Some((wstream, value, encoding, cb)) =>
                 Some((
                   Internal__JsTypeReflection.constructorName(wstream),
-                  Js.typeof(value),
+                  typeof(value),
                   encoding,
-                  Js.typeof(cb),
-                ))
-              }
-              t->equal(actual, Some(("Writable", "number", Js.null, "function")), "")
+                  typeof(cb),
+  ))
+}
+  t->equal(actual, Some(("Writable", #number, Null.null, #function)), "")
 
               resolve()
             },
