@@ -1,8 +1,8 @@
 open NodeJs
 let data = "Sample text to write to a file!"->Buffer.fromString
-let process = Process.process
+let nodeProcess = Process.process
 
-let outputPath = Path.relative(~from=Process.cwd(process), ~to_="example__output.txt")
+let outputPath = Path.relative(~from=Process.cwd(nodeProcess), ~to_="example__output.txt")
 
 let writeStream = Fs.createWriteStream(outputPath)
 

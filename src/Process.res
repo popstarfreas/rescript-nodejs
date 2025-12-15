@@ -6,7 +6,7 @@ type t = {
   execPath: string,
   exitCode: int,
 }
-@module external process: t = "process"
+@val external process: t = "process"
 
 type warning = {
   name: string,
@@ -185,7 +185,7 @@ external hrtimeBigInt: t => BigInt.t = "bigint"
 @get external pid: t => int = "pid"
 @get external platform: t => string = "platform"
 @get external ppid: t => int = "ppid"
-@get external uptime: t => float = "uptime"
+@send external uptime: t => float = "uptime"
 @get external title: t => string = "title"
 @get external version: t => string = "version"
 @get external versions: t => dict<string> = "versions"

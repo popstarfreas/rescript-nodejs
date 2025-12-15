@@ -1,23 +1,23 @@
 open Zora
-let process = Process.process
+let nodeProcess = Process.process
 
 zoraBlock("Console", t => {
   let c1 = {
     open Console
     make({
-      stderr: Process.stderr(process),
+      stderr: Process.stderr(nodeProcess),
       ignoreErrors: false,
       colorMode: true,
       inspectOptions: {},
-      stdout: Process.stdout(process),
+      stdout: Process.stdout(nodeProcess),
     })
   }
 
   let c2 = Console.make2({
-    "stderr": Process.stderr(process),
+    "stderr": Process.stderr(nodeProcess),
     "ignoreErrors": false,
     "colorMode": true,
-    "stdout": Process.stdout(process),
+    "stdout": Process.stdout(nodeProcess),
   })
 
   Stdlib.Console.log("=== Testing console output styles ===")
