@@ -8,7 +8,7 @@ zoraBlock("BigInt", t => {
   t->block(
     "'BigInt.fromInt' and 'BigInt.toInt' are associative operations for all 32-bit integers",
     t => {
-      let arrA = Belt.Array.makeBy(1000, _ => randomIntF(1000000))
+      let arrA = Array.fromInitializer(~length=1000, _ => randomIntF(1000000))
       let arrB = Array.map(arrA, BigInt.fromFloat)
       let arrC = Array.map(arrB, i => BigInt.toInt(i)->Float.fromInt)
       t->equal(arrA, arrC, "")

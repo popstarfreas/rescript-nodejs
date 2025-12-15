@@ -224,7 +224,7 @@ let classifyExn: JsExn.t => case = value =>
   | Some(err) => err
   }
 
-let classify: JsExn.t => Belt.Result.t<case, 'a> = value =>
+let classify: JsExn.t => Result.t<case, 'a> = value =>
   switch classifyOpt(value) {
   | None => Error(value)
   | Some(err) => Ok(err)
