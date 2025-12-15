@@ -127,11 +127,8 @@ module Http2Session = {
   @send
   external ping: (t, (Nullable.t<JsExn.t>, int, Buffer.t) => unit) => bool = "ping"
   @send
-  external pingWith: (
-    t,
-    ~payload: Buffer.t,
-    (Nullable.t<JsExn.t>, int, Buffer.t) => unit,
-  ) => bool = "ping"
+  external pingWith: (t, ~payload: Buffer.t, (Nullable.t<JsExn.t>, int, Buffer.t) => unit) => bool =
+    "ping"
   @send external ref: t => unit = "ref"
   @get
   external remoteSettings: t => {

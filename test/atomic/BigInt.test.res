@@ -72,7 +72,7 @@ zoraBlock("BigInt", t => {
   t->block("BigInt.divide", t => {
     let a = randomIntF(10000)
     let b = randomIntF(10000)
-    let c = a / b
+    let c = Math.floor(a / b)
 
     open BigInt
     t->equal(divide(fromFloat(a), fromFloat(b)), fromFloat(c), "")
@@ -81,7 +81,7 @@ zoraBlock("BigInt", t => {
   t->block("BigInt.(/)", t => {
     let a = randomIntF(10000)
     let b = randomIntF(10000)
-    let c = a / b
+    let c = Math.floor(a / b)
 
     open! BigInt
     t->equal(fromFloat(a) / fromFloat(b), BigInt.fromFloat(c), "")

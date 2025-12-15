@@ -3,8 +3,9 @@ zoraBlock("BinaryLike", t => {
   open Js.TypedArray2
   let uint8FromArray: array<int> => Uint8Array.t = %raw(`arr => new Uint8Array(arr)`)
   let int8FromArray: array<int> => Int8Array.t = %raw(`arr => new Int8Array(arr)`)
-  let uint8ClampedFromArray: array<int> => Uint8ClampedArray.t =
-    %raw(`arr => new Uint8ClampedArray(arr)`)
+  let uint8ClampedFromArray: array<
+    int,
+  > => Uint8ClampedArray.t = %raw(`arr => new Uint8ClampedArray(arr)`)
   let uint16FromArray: array<int> => Uint16Array.t = %raw(`arr => new Uint16Array(arr)`)
   let int16FromArray: array<int> => Int16Array.t = %raw(`arr => new Int16Array(arr)`)
 

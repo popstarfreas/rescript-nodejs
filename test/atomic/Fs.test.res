@@ -3,7 +3,7 @@ open Zora
 
 zora("Fs", async t => {
   t->test("readFile should read entire file", async t => {
-    let fh = await open_(Global.filename, Flag.read)
+    let fh = await open_(Global.filename(Global.importMetaUrl), Flag.read)
     let buffer = await FileHandle.readFile(fh)
     let _ = await FileHandle.close(fh)
 
@@ -12,7 +12,7 @@ zora("Fs", async t => {
   })
 
   t->test("readFileWith should read entire file as a string", async t => {
-    let fh = await open_(Global.filename, Flag.read)
+    let fh = await open_(Global.filename(Global.importMetaUrl), Flag.read)
     let buffer = await FileHandle.readFileWith(fh, {encoding: "UTF-8"})
     let _ = await FileHandle.close(fh)
     let needle = "Random string: uCF6c5f3Arrq"

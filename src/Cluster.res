@@ -134,11 +134,8 @@ module Worker = {
   let sendHttpServerHandle = (~options=?, msg, handle) =>
     sendHttpServerHandle(msg, handle, Nullable.fromOption(options))
   @send
-  external sendSocketHandle: (
-    string,
-    Net.Socket.subtype<'w, 'r, 'a>,
-    Nullable.t<{..}>,
-  ) => unit = "send"
+  external sendSocketHandle: (string, Net.Socket.subtype<'w, 'r, 'a>, Nullable.t<{..}>) => unit =
+    "send"
   let sendSocketHandle = (~options=?, msg, handle) =>
     sendSocketHandle(msg, handle, Nullable.fromOption(options))
 }

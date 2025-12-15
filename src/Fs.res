@@ -291,13 +291,8 @@ module FileHandle = {
   }
 
   @send
-  external read: (
-    t,
-    Buffer.t,
-    ~offset: int,
-    ~length: int,
-    ~position: int,
-  ) => promise<readInfo> = "read"
+  external read: (t, Buffer.t, ~offset: int, ~length: int, ~position: int) => promise<readInfo> =
+    "read"
   @send external readFile: t => promise<Buffer.t> = "readFile"
   @send
   external readFileWith: (t, readFileOptions) => promise<string> = "readFile"
@@ -410,9 +405,8 @@ module PromiseAPI = {
 
   type statOptions = {bigint: int}
   @module("node:fs") @scope("promises")
-  external lstat: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)] => promise<
-    Stats.t,
-  > = "lstat"
+  external lstat: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)] => promise<Stats.t> =
+    "lstat"
 
   @module("node:fs") @scope("promises")
   external lstatBigInt: (
@@ -500,8 +494,7 @@ external chown: (string, ~uid: int, ~gid: int) => promise<unit> = "chown"
 external copyFile: (string, ~dest: string) => promise<unit> = "copyFile"
 
 @module("node:fs") @scope("promises")
-external copyFileFlag: (string, ~dest: string, ~flags: Constants.t) => promise<unit> =
-  "copyFile"
+external copyFileFlag: (string, ~dest: string, ~flags: Constants.t) => promise<unit> = "copyFile"
 
 @module("node:fs") @scope("promises")
 external lchmod: (string, ~mode: int) => promise<unit> = "lchmod"
@@ -551,15 +544,13 @@ type readDirOptions
 external readDirOptions: (~withFileTypes: bool, ~encoding: string=?, unit) => readDirOptions = ""
 
 @module("fs") @scope("promises")
-external _readdirWithFileTypes: (string, readDirOptions) => promise<array<Dirent.t>> =
-  "readdir"
+external _readdirWithFileTypes: (string, readDirOptions) => promise<array<Dirent.t>> = "readdir"
 let readdirWithFileTypes = (dir: string) => {
   _readdirWithFileTypes(dir, readDirOptions(~withFileTypes=true, ()))
 }
 
 @module("fs") @scope("promises")
-external readFile: (string, ~options: readFileOptions=?, unit) => promise<Buffer.t> =
-  "readFile"
+external readFile: (string, ~options: readFileOptions=?, unit) => promise<Buffer.t> = "readFile"
 
 @module("fs") @scope("promises")
 external unlink: string => promise<unit> = "unlink"

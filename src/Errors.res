@@ -57,8 +57,7 @@ module AssertionError = {
       Internal__JsTypeReflection.instanceOfClass(~instance=x, ~class_=constructor)
   external toJsExn: t => JsExn.t = "%identity"
   external fromJsExn: JsExn.t => t = "%identity"
-  let fromJsExn: JsExn.t => option<t> = exn =>
-    isAssertionError(exn) ? Some(fromJsExn(exn)) : None
+  let fromJsExn: JsExn.t => option<t> = exn => isAssertionError(exn) ? Some(fromJsExn(exn)) : None
 }
 
 module EvalError = {

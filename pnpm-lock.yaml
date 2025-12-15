@@ -7,14 +7,16 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@rescript/linux-x64':
-        specifier: ^12.0.1
-        version: 12.0.1
     devDependencies:
       '@dusty-phillips/rescript-zora':
         specifier: ^4.0.0
         version: 4.0.0
+      '@rescript/linux-x64':
+        specifier: ^12.0.1
+        version: 12.0.1
+      '@rescript/runtime':
+        specifier: ^12.0.1
+        version: 12.0.1
       changie:
         specifier: ^1.18.0
         version: 1.18.0

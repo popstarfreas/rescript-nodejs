@@ -9,6 +9,5 @@ zoraBlock("Os", t => {
       Dict.get(ifaces, "lo")->Option.getOrThrow->Array.get(0)->Option.getOrThrow
     ).address
     t->equal(localhost, "127.0.0.1", "")
-    Stdlib.Console.log(ifaces)
   })
 })
