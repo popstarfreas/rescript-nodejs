@@ -92,7 +92,6 @@ type execOptions = {
   uid?: int,
   gid?: int,
   windowsHide?: bool,
-  unit: unit,
 }
 
 @module("node:child_process") @val
@@ -202,7 +201,7 @@ type spawnSyncOptions = {
 }
 
 @module("node:child_process") @val
-external spawnSync: (string, array<string>, spawnSyncOptions) => spawnSyncResult<'a> = "spawnSync"
+external spawnSync: (string, array<string>) => spawnSyncResult<'a> = "spawnSync"
 
 @module("node:child_process") @val
 external spawnSyncWith: (string, array<string>, spawnSyncOptions) => spawnSyncResult<'a> =

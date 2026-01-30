@@ -37,7 +37,7 @@ type binaryToTextEncoding =
   | @as("hex") Hex
   | @as("binary") Binary
 
-module PivateKey = {
+module PrivateKey = {
   include KeyObject.Impl
   type kind = [KeyObject.privateKey]
   type t<'a> = KeyObject.t<'a, [kind]>
@@ -156,7 +156,7 @@ module Decipher = {
     @send
     external setAuthTag: (subtype<'w, 'r, 'a>, Buffer.t) => t = "setAuthTag"
     @send
-    external setAutoPatting: (subtype<'w, 'r, 'a>, bool) => t = "setAutoPadding"
+    external setAutoPadding: (subtype<'w, 'r, 'a>, bool) => t = "setAutoPadding"
     @send
     external update: (subtype<'w, 'r, 'a>, Buffer.t) => Buffer.t = "update"
   }

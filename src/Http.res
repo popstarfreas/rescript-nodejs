@@ -13,7 +13,7 @@ type headersObject = {
   @as("access-control-allow-headers")
   accessControlAllowHeaders: option<string>,
   @as("access-control-allow-methods")
-  accessControlAllowMethods: string,
+  accessControlAllowMethods: option<string>,
   @as("access-control-allow-origin")
   accessControlAllowOrigin: option<string>,
   @as("access-control-expose-headers")
@@ -35,7 +35,7 @@ type headersObject = {
   @as("content-language")
   contentLanguage: option<string>,
   @as("content-length")
-  contentLenth: option<string>,
+  contentLength: option<string>,
   @as("content-location")
   contentLocation: option<string>,
   @as("content-range")
@@ -137,7 +137,6 @@ module IncomingMessage = {
     include Events
     @get external method__: subtype<'r, 'a> => string = "method"
     @get external url: subtype<'r, 'a> => string = "url"
-    @get external port: subtype<'r, 'a> => int = "port"
     @get external headers: subtype<'r, 'a> => headersObject = "headers"
     @get
     external rawHeaders: subtype<'r, 'a> => array<string> = "rawHeaders"
@@ -752,8 +751,3 @@ external getUrlWithOptionsCallback: (
 @module("node:http") external globalAgent: Agent.t = "globalAgent"
 @module("node:http") external maxHeaderSize: int = "maxHeaderSize"
 
-type statusCodes = dict<string>
-@module("node:http") external _STATUS_CODES: statusCodes = "STATUS_CODES"
-
-type methods = array<string>
-@module("node:http") external _METHODS: methods = "METHODS"

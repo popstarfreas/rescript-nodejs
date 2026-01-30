@@ -53,16 +53,16 @@ module Stats = {
   /** `isBlockDevice(stats)` Returns true if the `stats` object describes a block device. */
   @send
   external isBlockDevice: t => bool = "isBlockDevice"
-  /** `isBlockDevice(stats)` Returns true if the `stats` object describes a character device. */
+  /** `isCharacterDevice(stats)` Returns true if the `stats` object describes a character device. */
   @send
   external isCharacterDevice: t => bool = "isCharacterDevice"
-  /** `isBlockDevice(stats)` Returns true if the `stats` object describes a symbolic link. */
+  /** `isSymbolicLink(stats)` Returns true if the `stats` object describes a symbolic link. */
   @send
   external isSymbolicLink: t => bool = "isSymbolicLink"
-  /** `isBlockDevice(stats)` Returns true if the `stats` object describes a first-in-first-out (FIFO) pipe. */
+  /** `isFIFO(stats)` Returns true if the `stats` object describes a first-in-first-out (FIFO) pipe. */
   @send
   external isFIFO: t => bool = "isFIFO"
-  /** `isBlockDevice(stats)` Returns true if the `stats` object describes a socket. */
+  /** `isSocket(stats)` Returns true if the `stats` object describes a socket. */
   @send
   external isSocket: t => bool = "isSocket"
 }
@@ -277,9 +277,9 @@ module FileHandle = {
   type t = {fd: fd}
 
   @send
-  external appendFile: (t, Buffer.t, appendFileOptions) => promise<unit> = "appendFile"
+  external appendFile: (t, Buffer.t) => promise<unit> = "appendFile"
   @send
-  external appendFileWith: (t, Buffer.t) => promise<unit> = "appendFile"
+  external appendFileWith: (t, Buffer.t, appendFileOptions) => promise<unit> = "appendFile"
   @send external chmod: (t, int) => promise<unit> = "chmod"
   @send external chown: (t, int, int) => promise<unit> = "chown"
   @send external close: t => promise<unit> = "close"
