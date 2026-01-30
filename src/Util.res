@@ -14,7 +14,7 @@ type inspectOptions = {
   getters?: bool,
 }
 
-@module("util")
+@module("node:util")
 external inspect: ('a, inspectOptions) => string = "inspect"
 type defaultInspectOptions = {
   mutable showHidden: bool,

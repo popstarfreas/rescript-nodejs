@@ -198,7 +198,7 @@ type appendFileOptions = {
   encoding?: string,
 }
 
-@module("fs") external appendFileSync: (string, Buffer.t) => unit = "appendFileSync"
+@module("node:fs") external appendFileSync: (string, Buffer.t) => unit = "appendFileSync"
 type readFileOptions = {
   flag?: Flag.t,
   encoding?: string,
@@ -466,7 +466,7 @@ module PromiseAPI = {
 
 @module("node:fs") @scope("promises")
 external access: string => promise<unit> = "access"
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external accessWithMode: (string, ~mode: Constants.t) => promise<unit> = "access"
 
 @module("node:fs") @scope("promises")
@@ -536,26 +536,26 @@ external open_: (string, Flag.t) => promise<FileHandle.t> = "open"
 @module("node:fs") @scope("promises")
 external openWithMode: (string, Flag.t, ~mode: int) => promise<FileHandle.t> = "open"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external readdir: string => promise<array<string>> = "readdir"
 
 type readDirOptions
 @obj
 external readDirOptions: (~withFileTypes: bool, ~encoding: string=?, unit) => readDirOptions = ""
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external _readdirWithFileTypes: (string, readDirOptions) => promise<array<Dirent.t>> = "readdir"
 let readdirWithFileTypes = (dir: string) => {
   _readdirWithFileTypes(dir, readDirOptions(~withFileTypes=true, ()))
 }
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external readFile: (string, ~options: readFileOptions=?, unit) => promise<Buffer.t> = "readFile"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external unlink: string => promise<unit> = "unlink"
 
-@module("fs") @scope("promises")
+@module("node:fs") @scope("promises")
 external writeFile: (string, Buffer.t, ~options: writeFileOptions=?, unit) => promise<unit> =
   "writeFile"
 
@@ -710,6 +710,6 @@ type createWriteStreamOptions<'fs> = {
 @module("node:fs")
 external createWriteStream: string => WriteStream.t = "createWriteStream"
 
-@module("fs")
+@module("node:fs")
 external createWriteStreamWith: (string, createWriteStreamOptions<'fs>) => WriteStream.t =
   "createWriteStream"
