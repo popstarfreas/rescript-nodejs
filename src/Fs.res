@@ -237,6 +237,9 @@ external chownSync: (string, ~uid: int, ~gid: int) => unit = "chownSync"
 @module("node:fs")
 external fchownSync: (fd, ~uid: int, ~gid: int) => unit = "fchownSync"
 @module("node:fs") external readlinkSync: string => string = "readlinkSync"
+@module("node:fs") external symlinkSync: (string, string) => unit = "symlinkSync"
+@module("node:fs")
+external symlinkSyncWith: (string, string, ~type_: string) => unit = "symlinkSync"
 @module("node:fs") external unlinkSync: string => unit = "unlinkSync"
 
 /**
