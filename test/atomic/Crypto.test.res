@@ -1,5 +1,10 @@
 open Zora
 
+let repoRoot = Process.cwd(Process.process)
+let readSource = path =>
+  Fs.readFileSync(path)->Buffer.toStringWithEncoding(StringEncoding.utf8)
+let contains = (haystack, needle) => String.indexOf(haystack, needle) >= 0
+
 zoraBlock("Crypto", t => {
   t->block("Hashing to sha256", t => {
     let input = "hash me"
@@ -16,5 +21,15 @@ zoraBlock("Crypto", t => {
       ->Crypto.Hmac.update(input->Buffer.fromString)
       ->Crypto.Hmac.digestWithEncoding("hex")
     t->equal("832324d67f36f13c0ab0730000d4aaf469ff0983edcf170a9fdcaa22f6672fec", hash, "")
+  })
+
+  t->block("PrivateKey module name should be spelled correctly", t => {
+    let src = readSource(Path.join2(repoRoot, "src/Crypto.res"))
+    t->ok(!contains(src, "module PivateKey"), "PrivateKey module is misspelled")
+  })
+
+  t->block("setAutoPadding should be spelled correctly", t => {
+    let src = readSource(Path.join2(repoRoot, "src/Crypto.res"))
+    t->ok(!contains(src, "setAutoPatting"), "setAutoPadding is misspelled")
   })
 })
