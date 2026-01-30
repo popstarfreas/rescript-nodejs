@@ -27,8 +27,8 @@ importers:
         specifier: 1.2.0
         version: 1.2.0(zora@5.2.0)
       rescript:
-        specifier: ^12.0.1
-        version: 12.0.1
+        specifier: ^12.1.0
+        version: 12.1.0
       zora:
         specifier: ^5.2.0
         version: 5.2.0
@@ -56,20 +56,20 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@rescript/darwin-arm64@12.0.1':
-    resolution: {integrity: sha512-JJddiKKfOSc9X+2rt6IrbEUlOBaIfgjkWzCN986czZ5YV4lh3jysPVk6EQHaip2ibPkwf/nLv6Pin4t+XmdqLQ==}
+  '@rescript/darwin-arm64@12.1.0':
+    resolution: {integrity: sha512-OuJMT+2h2Lp60n8ONFx1oBAAePSVkM9zl7E/EX4VD2xkQoVTPklz0BpHYOICnFJSCOOdbOhbsTBXdLpo3yvllg==}
     engines: {node: '>=20.11.0'}
     cpu: [arm64]
     os: [darwin]
 
-  '@rescript/darwin-x64@12.0.1':
-    resolution: {integrity: sha512-tZSeHr9MQ90oKULDIn9ugvP08eLCflH2uO02iF7z1i8RshPrfD36qFiPOn4WxzcSJuqynffNLEgeWYrnPiZ0JQ==}
+  '@rescript/darwin-x64@12.1.0':
+    resolution: {integrity: sha512-r5Iv4ga+LaNq+6g9LODwZG4bwydd9UDXACP/HKxOfrP9XQCITlF/XqB1ZDJWyJOgJLZSJCd7erlG38YtB0VZKA==}
     engines: {node: '>=20.11.0'}
     cpu: [x64]
     os: [darwin]
 
-  '@rescript/linux-arm64@12.0.1':
-    resolution: {integrity: sha512-V/xnkFgEvSRMlyT1XCptnWWXgySFR9aKdja74VeDyEGLc6MGmi8zopxUUFcwCQXxV/zPAFkIxjz8xMY0SBCAmQ==}
+  '@rescript/linux-arm64@12.1.0':
+    resolution: {integrity: sha512-UTZv4GTjbyQ/T5LQDfQiGcumK3SzE1K7+ug6gWpDcGZ7ALc7hCS6BVEFL/LDs8iWVwAwkK/6r456s2zRnvS7wQ==}
     engines: {node: '>=20.11.0'}
     cpu: [arm64]
     os: [linux]
@@ -80,11 +80,20 @@ packages:
     cpu: [x64]
     os: [linux]
 
+  '@rescript/linux-x64@12.1.0':
+    resolution: {integrity: sha512-c0PXuBL09JRSA4nQusYbR4mW5QJrBPqxDrqvIX+M79fk3d6jQmj5x4NsBwk5BavxvmbR/JU1JjYBlSAa3h22Vg==}
+    engines: {node: '>=20.11.0'}
+    cpu: [x64]
+    os: [linux]
+
   '@rescript/runtime@12.0.1':
     resolution: {integrity: sha512-pMoWvllPFK0cl87vMYBVvll+DaAdPAsRuLIIJa+Q8LMhcS7cqpaZVflU3LbH+U/kv3vWaUYIfLBObwGnXw/CDg==}
 
-  '@rescript/win32-x64@12.0.1':
-    resolution: {integrity: sha512-Hv6nwb6A94qtj6b4PcIsmoWhLIcLt6wLuHpD9YNxj4/d9FkrHM/yj9ZKhKan/9rfg4wkHl1cZE898AZe/nWq9g==}
+  '@rescript/runtime@12.1.0':
+    resolution: {integrity: sha512-bvr9RfvBD+JS/6foWCA4l2fLXmUXN0KGqylXQPHt09QxUghqgoCiaWVHaHSx5dOIk/jAPlGQ7zB5yVeMas/EFQ==}
+
+  '@rescript/win32-x64@12.1.0':
+    resolution: {integrity: sha512-nQC42QByyAbryfkbyK67iskipUqXVwTPCFrqissY4jJoP0128gg0yG6DydJnV1stXphtFdMFHtmyYE1ffG7UBg==}
     engines: {node: '>=20.11.0'}
     cpu: [x64]
     os: [win32]
@@ -218,8 +227,8 @@ packages:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
 
-  rescript@12.0.1:
-    resolution: {integrity: sha512-59JyEUyLj+IPd9VutAXpBXRGqaeaHCMtvACJNAy/oI1hjpjklQ2UJE07oLhxoWB4SDZrCxzowNUpE46UAgjOXg==}
+  rescript@12.1.0:
+    resolution: {integrity: sha512-n/B43wzIEKV4OmlrWbrlQOL4zZaz0RM/Cc8PG2YvhQvQDW7nscHJliDq1AGeVwHoMX68MeaKKzLDOMOMU9Z6FA==}
     engines: {node: '>=20.11.0'}
     hasBin: true
 
@@ -285,20 +294,25 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
 
-  '@rescript/darwin-arm64@12.0.1':
+  '@rescript/darwin-arm64@12.1.0':
     optional: true
 
-  '@rescript/darwin-x64@12.0.1':
+  '@rescript/darwin-x64@12.1.0':
     optional: true
 
-  '@rescript/linux-arm64@12.0.1':
+  '@rescript/linux-arm64@12.1.0':
     optional: true
 
   '@rescript/linux-x64@12.0.1': {}
 
+  '@rescript/linux-x64@12.1.0':
+    optional: true
+
   '@rescript/runtime@12.0.1': {}
 
-  '@rescript/win32-x64@12.0.1':
+  '@rescript/runtime@12.1.0': {}
+
+  '@rescript/win32-x64@12.1.0':
     optional: true
 
   anymatch@3.1.2:
@@ -429,15 +443,15 @@ snapshots:
     dependencies:
       picomatch: 2.3.0
 
-  rescript@12.0.1:
+  rescript@12.1.0:
     dependencies:
-      '@rescript/runtime': 12.0.1
+      '@rescript/runtime': 12.1.0
     optionalDependencies:
-      '@rescript/darwin-arm64': 12.0.1
-      '@rescript/darwin-x64': 12.0.1
-      '@rescript/linux-arm64': 12.0.1
-      '@rescript/linux-x64': 12.0.1
-      '@rescript/win32-x64': 12.0.1
+      '@rescript/darwin-arm64': 12.1.0
+      '@rescript/darwin-x64': 12.1.0
+      '@rescript/linux-arm64': 12.1.0
+      '@rescript/linux-x64': 12.1.0
+      '@rescript/win32-x64': 12.1.0
 
   reusify@1.0.4: {}
 

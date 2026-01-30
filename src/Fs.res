@@ -615,6 +615,71 @@ module ReadStream = {
   include Impl
 }
 
+type watchEventType = [#rename | #change]
+
+module FSWatcher = {
+  type t
+  module Events = {
+    @send
+    external onChange: (
+      t,
+      @as("change") _,
+      @uncurry (watchEventType, Nullable.t<string>) => unit,
+    ) => t =
+      "on"
+    @send
+    external onError: (t, @as("error") _, @uncurry (JsExn.t => unit)) => t = "on"
+
+    @send
+    external offChange: (
+      t,
+      @as("change") _,
+      @uncurry (watchEventType, Nullable.t<string>) => unit,
+    ) => t =
+      "off"
+    @send
+    external offError: (t, @as("error") _, @uncurry (JsExn.t => unit)) => t = "off"
+
+    @send
+    external onChangeOnce: (
+      t,
+      @as("change") _,
+      @uncurry (watchEventType, Nullable.t<string>) => unit,
+    ) => t = "once"
+    @send
+    external onErrorOnce: (t, @as("error") _, @uncurry (JsExn.t => unit)) => t = "once"
+  }
+  module Impl = {
+    include Events
+    @send external close: t => unit = "close"
+    @send external ref: t => t = "ref"
+    @send external unref: t => t = "unref"
+  }
+  include Impl
+  include EventEmitter.Impl({type t = t})
+}
+
+type watchOptions = {
+  persistent?: bool,
+  recursive?: bool,
+  encoding?: string,
+}
+
+@module("node:fs")
+external watch: (
+  string,
+  ~listener: @uncurry (watchEventType, Nullable.t<string>) => unit=?,
+  unit,
+) => FSWatcher.t = "watch"
+
+@module("node:fs")
+external watchWithOptions: (
+  string,
+  watchOptions,
+  ~listener: @uncurry (watchEventType, Nullable.t<string>) => unit=?,
+  unit,
+) => FSWatcher.t = "watch"
+
 type createReadStreamOptions = {
   flags?: Flag.t,
   encoding?: string,
