@@ -4,31 +4,31 @@ type options = {
   all?: bool,
   verbatim?: bool,
 }
-@module("dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external lookup: string => promise<array<{"address": string, "family": int}>> = "lookup"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external lookupWithOptions: (
   string,
   options,
 ) => promise<array<{"address": string, "family": int}>> = "lookup"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external lookupService: (string, int) => promise<{"hostname": string, "service": string}> =
   "lookupService"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external resolve4: string => promise<array<string>> = "resolve4"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external resolve4TTL: (string, @as(json` {"ttl": true} `) _) => promise<array<string>> = "resolve4"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external resolve6: string => promise<array<string>> = "resolve6"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external resolve6TTL: (string, @as(json` {"ttl": true} `) _) => promise<array<string>> = "resolve6"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external resolveAny: string => promise<array<{..}>> = "resolveAny"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external resolveCname: string => promise<array<string>> = "resolveCname"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external resolveMx: string => promise<array<{"priority": int, "exchange": string}>> = "resolveMx"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external resolveNaptr: string => promise<
   array<{
     "flags": string,
@@ -39,11 +39,11 @@ external resolveNaptr: string => promise<
     "preference": int,
   }>,
 > = "resolveNaptr"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external resolveNs: string => promise<array<string>> = "resolveNs"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external resolvePtr: string => promise<array<string>> = "resolvePtr"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external resolveSoa: string => promise<
   array<{
     "nsname": string,
@@ -56,7 +56,7 @@ external resolveSoa: string => promise<
   }>,
 > = "resolveSoa"
 
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external resolveSrv: string => promise<
   array<{
     "priority": int,
@@ -65,11 +65,11 @@ external resolveSrv: string => promise<
     "name": string,
   }>,
 > = "resolveSrv"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external resolveTxt: string => promise<array<array<string>>> = "resolveTxt"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external reverse: string => promise<array<string>> = "reverse"
-@module("node:dns") @scope("promise")
+@module("node:dns") @scope("promises")
 external setServers: array<string> => promise<unit> = "setServers"
 
 module CallbackAPI = {

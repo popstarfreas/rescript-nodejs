@@ -172,7 +172,7 @@ type spawnOptions = {
   windowsHide?: bool,
 }
 
-external spawn: (string, array<string>) => t = "spawn"
+@module("node:child_process") @val external spawn: (string, array<string>) => t = "spawn"
 
 @module("node:child_process") @val
 external spawnWith: (string, array<string>, spawnOptions) => t = "spawn"

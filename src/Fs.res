@@ -438,7 +438,7 @@ module PromiseAPI = {
   external mkdtempWith: (
     ~prefix: string,
     ~mkdtempOptions: @unwrap [#Str(string) | #Option(mkdtempOptions)],
-  ) => promise<string> = "mkddtemp"
+  ) => promise<string> = "mkdtemp"
 
   @module("node:fs") @scope("promises")
   external open_: (
@@ -455,13 +455,13 @@ module PromiseAPI = {
 
   @module("node:fs") @scope("promises")
   external stat: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)] => promise<Stats.t> =
-    "lstat"
+    "stat"
 
   @module("node:fs") @scope("promises")
   external statWith: (
     ~path: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
     ~options: statOptions,
-  ) => promise<Stats.t> = "lstat"
+  ) => promise<Stats.t> = "stat"
 }
 
 @module("node:fs") @scope("promises")
@@ -525,10 +525,10 @@ external mkdirSyncWith: (string, mkdirOptions) => unit = "mkdirSync"
 type mkdtempOptions = {encoding?: string}
 
 @module("node:fs") @scope("promises")
-external mkdtemp: string => promise<string> = "mkddtemp"
+external mkdtemp: string => promise<string> = "mkdtemp"
 
 @module("node:fs") @scope("promises")
-external mkdtempWith: (string, mkdtempOptions) => promise<string> = "mkddtemp"
+external mkdtempWith: (string, mkdtempOptions) => promise<string> = "mkdtemp"
 
 @module("node:fs") @scope("promises")
 external open_: (string, Flag.t) => promise<FileHandle.t> = "open"
@@ -566,10 +566,10 @@ module WriteStream = {
   type t = subtype<Buffer.t, [kind<Buffer.t>]>
   module Impl = {
     include Stream.Writable.Impl
-    @send
+    @get
     external bytesWritten: subtype<'w, [> kind<'w>]> => int = "bytesWritten"
-    @send external path: subtype<'w, [> kind<'w>]> => string = "path"
-    @send
+    @get external path: subtype<'w, [> kind<'w>]> => string = "path"
+    @get
     external pending: subtype<'w, [> kind<'w>]> => bool = "pending"
     @send
     external onOpen: (
@@ -594,10 +594,10 @@ module ReadStream = {
   type t = subtype<Buffer.t, [kind<Buffer.t>]>
   module Impl = {
     include Stream.Readable.Impl
-    @send
-    external bytesRead: subtype<'r, [> kind<'r>]> => int = "bytesWritten"
-    @send external path: subtype<'r, [> kind<'r>]> => string = "path"
-    @send
+    @get
+    external bytesRead: subtype<'r, [> kind<'r>]> => int = "bytesRead"
+    @get external path: subtype<'r, [> kind<'r>]> => string = "path"
+    @get
     external pending: subtype<'r, [> kind<'r>]> => bool = "pending"
     @send
     external onOpen: (

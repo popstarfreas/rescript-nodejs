@@ -6,8 +6,8 @@ module Impl: {
   let utf8: t
   @inline("utf16le")
   let utf16le: t
-  @inline("usc2")
-  let usc2: t
+  @inline("ucs2")
+  let ucs2: t
   @inline("base64")
   let base64: t
   @inline("latin1")
@@ -24,8 +24,8 @@ module Impl: {
   let utf8 = "utf8"
   @inline("utf16le")
   let utf16le = "utf16le"
-  @inline("usc2")
-  let usc2 = "usc2"
+  @inline("ucs2")
+  let ucs2 = "ucs2"
   @inline("base64")
   let base64 = "base64"
   @inline("latin1")
