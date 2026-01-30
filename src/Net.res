@@ -305,7 +305,7 @@ module Server = {
     @send
     external onClose: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> = "on"
     @send
-    external onError: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> = "on"
+    external onError: (subtype<'ty>, @as("error") _, @uncurry (JsExn.t => unit)) => subtype<'ty> = "on"
     @send
     external onConnection: (
       subtype<'ty>,
@@ -321,7 +321,7 @@ module Server = {
     @send
     external offClose: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> = "off"
     @send
-    external offError: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> = "off"
+    external offError: (subtype<'ty>, @as("error") _, @uncurry (JsExn.t => unit)) => subtype<'ty> = "off"
     @send
     external offConnection: (
       subtype<'ty>,
@@ -338,7 +338,7 @@ module Server = {
     external onCloseOnce: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> =
       "once"
     @send
-    external onErrorOnce: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> =
+    external onErrorOnce: (subtype<'ty>, @as("error") _, @uncurry (JsExn.t => unit)) => subtype<'ty> =
       "once"
     @send
     external onConnectionOnce: (
@@ -381,7 +381,7 @@ module TcpServer = {
     @send
     external onClose: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> = "on"
     @send
-    external onError: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> = "on"
+    external onError: (subtype<'ty>, @as("error") _, @uncurry (JsExn.t => unit)) => subtype<'ty> = "on"
     @send
     external onConnection: (
       subtype<'ty>,
@@ -397,7 +397,7 @@ module TcpServer = {
     @send
     external offClose: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> = "off"
     @send
-    external offError: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> = "off"
+    external offError: (subtype<'ty>, @as("error") _, @uncurry (JsExn.t => unit)) => subtype<'ty> = "off"
     @send
     external offConnection: (
       subtype<'ty>,
@@ -414,7 +414,7 @@ module TcpServer = {
     external onCloseOnce: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> =
       "once"
     @send
-    external onErrorOnce: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> =
+    external onErrorOnce: (subtype<'ty>, @as("error") _, @uncurry (JsExn.t => unit)) => subtype<'ty> =
       "once"
     @send
     external onConnectionOnce: (
@@ -467,7 +467,7 @@ module IcpServer = {
     @send
     external onClose: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> = "on"
     @send
-    external onError: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> = "on"
+    external onError: (subtype<'ty>, @as("error") _, @uncurry (JsExn.t => unit)) => subtype<'ty> = "on"
     @send
     external onConnection: (
       subtype<'ty>,
@@ -483,7 +483,7 @@ module IcpServer = {
     @send
     external offClose: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> = "off"
     @send
-    external offError: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> = "off"
+    external offError: (subtype<'ty>, @as("error") _, @uncurry (JsExn.t => unit)) => subtype<'ty> = "off"
     @send
     external offConnection: (
       subtype<'ty>,
@@ -500,7 +500,7 @@ module IcpServer = {
     external onCloseOnce: (subtype<'ty>, @as("close") _, @uncurry unit => unit) => subtype<'ty> =
       "once"
     @send
-    external onErrorOnce: (subtype<'ty>, @as("error") _, @uncurry unit => unit) => subtype<'ty> =
+    external onErrorOnce: (subtype<'ty>, @as("error") _, @uncurry (JsExn.t => unit)) => subtype<'ty> =
       "once"
     @send
     external onConnectionOnce: (
@@ -544,6 +544,6 @@ module IcpServer = {
   external listenWithOptions: (t, ~options: listenOptions, ~callback: unit => unit) => t = "listen"
 }
 
-@module("node:net") @val external isIP: string => bool = "isIP"
+@module("node:net") @val external isIP: string => int = "isIP"
 @module("node:net") @val external isIPv4: string => bool = "isIPv4"
 @module("node:net") @val external isIPv6: string => bool = "isIPv6"

@@ -255,7 +255,7 @@ external lastIndexOfIntFrom: (t, int, ~offset: int) => int = "lastIndexOf"
 @send external readInt32BE: (t, ~offset: int) => int = "readInt32BE"
 @send external readInt32LE: (t, ~offset: int) => int = "readInt32LE"
 
-@send external readIntBE: (t, ~offset: int) => float = "readIntBE"
+@send external readIntBE: (t, ~offset: int, ~length: int) => float = "readIntBE"
 @send
 external readIntLE: (t, ~offset: int, ~length: int) => float = "readIntLE"
 
@@ -352,8 +352,8 @@ external writeUintBE: (t, int, ~offset: int, ~length: int) => float = "writeUint
 @send
 external writeUintLE: (t, int, ~offset: int, ~length: int) => float = "writeUintLE"
 
-@get external _INSPECT_MAX_BYTES: t => int = "INSPECT_MAX_BYTES"
-@get external kMaxLength: t => int = "kMaxLength"
+@val external _INSPECT_MAX_BYTES: int = "Buffer.INSPECT_MAX_BYTES"
+@val external kMaxLength: int = "Buffer.kMaxLength"
 
 @send
 external transcode: (t, ~source: t, ~from: StringEncoding.t, ~to_: StringEncoding.t) => t =

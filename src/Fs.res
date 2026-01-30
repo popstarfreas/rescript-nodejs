@@ -38,10 +38,10 @@ module Stats = {
     mtimeMs: float,
     ctimeMs: float,
     birthtimeMs: float,
-    atime: string,
-    mtime: string,
-    ctime: string,
-    birthtime: string,
+    atime: Date.t,
+    mtime: Date.t,
+    ctime: Date.t,
+    birthtime: Date.t,
   }
 
   /** `isFile(stats)` Returns true if the `stats` object describes a file. */
@@ -403,7 +403,7 @@ module PromiseAPI = {
     ~newPath: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)],
   ) => promise<unit> = "link"
 
-  type statOptions = {bigint: int}
+  type statOptions = {bigint: bool}
   @module("node:fs") @scope("promises")
   external lstat: @unwrap [#Str(string) | #Buffer(Buffer.t) | #URL(Url.t)] => promise<Stats.t> =
     "lstat"

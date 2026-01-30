@@ -24,7 +24,7 @@ module Events = {
   @send
   external offError: (t, @as("error") _, @uncurry (JsExn.t => unit)) => t = "off"
   @send
-  external offExit: (t, @as("exit") _, @uncurry int => unit) => t = "off"
+  external offExit: (t, @as("exit") _, @uncurry (Null.t<int>, Null.t<string>) => unit) => t = "off"
   @send
   external offClose: (t, @as("close") _, @uncurry int => unit) => t = "off"
 
@@ -69,7 +69,7 @@ module Events = {
 include Events
 
 @get external connected: t => bool = "connected"
-@send external disconnect: t => bool = "disconnect"
+@send external disconnect: t => unit = "disconnect"
 @send external kill: (t, string) => unit = "kill"
 @send external ref: t => unit = "ref"
 @send external unref: t => unit = "unref"

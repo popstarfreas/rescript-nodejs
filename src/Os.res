@@ -7,14 +7,14 @@ type cpuTimes = private {
 }
 type cpu = private {
   model: string,
-  speed: string,
+  speed: int,
   times: cpuTimes,
 }
 @module("node:os") @val external eol: string = "EOL"
 @module("node:os") @val external arch: unit => string = "arch"
 @module("node:os") @val external cpus: unit => array<cpu> = "cpus"
 @module("node:os") @val external endianness: unit => string = "endianness"
-@module("node:os") @val external freemem: unit => int = "freemem"
+@module("node:os") @val external freemem: unit => float = "freemem"
 @module("node:os") @val external getPriority: int => int = "getPriority"
 @module("node:os") @val external homedir: unit => string = "homedir"
 @module("node:os") @val external hostname: unit => string = "hostname"
@@ -25,7 +25,7 @@ external loadavg: unit => array<float> = "loadavg"
 @module("node:os") @val
 external setPriority: (int, int) => unit = "setPriority"
 @module("node:os") @val external tmpdir: unit => string = "tmpdir"
-@module("node:os") @val external totalmem: unit => int = "totalmem"
+@module("node:os") @val external totalmem: unit => float = "totalmem"
 @module("node:os") @val external type_: unit => string = "type"
 @module("node:os") @val external uptime: unit => int = "uptime"
 type networkInterface = {

@@ -37,7 +37,7 @@ type t = {
   origin: string,
   password: string,
   pathname: string,
-  port: int,
+  port: string,
   protocol: string,
   search: string,
   searchParams: SearchParams.t,
